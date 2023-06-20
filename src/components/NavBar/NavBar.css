@@ -1,0 +1,26 @@
+.unni{
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  text-align: center;
+}
+.navbar-toggler:focus{
+  outline: none;
+  border-width: 1px;
+}
+@media (max-width: 1000px) {
+  .navbar-toggler{
+    display: flex;
+    flex: 1;
+    justify-content: end;
+    border-width: 1px;
+    border: none;
+    outline: none;
+  }
+  .navbar-toggler:focus {
+    outline: none;
+  }
+  .collapsed:focus{
+    outline: none;
+  }
+}
