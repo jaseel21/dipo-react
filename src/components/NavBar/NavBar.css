@@ -24,3 +24,7 @@
     outline: none;
   }
 }
+.navbar-brand{
+  font-weight: 800px;
+  font-size: 2rem;
+}

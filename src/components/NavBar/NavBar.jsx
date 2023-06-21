@@ -1,12 +1,12 @@
 import React from 'react'
 import "./NavBar.css"
-import { Navbar, Nav, Container } from 'react-bootstrap';
+
 import { Link } from 'react-router-dom';
 function NavBar() {
   return (
     <div class="navbar d-flex col-12 ">
             <nav class="navbar navbar-expand-lg  navbar-light col-12">
-              <a class="navbar-brand" href="#">Diploma</a>
+              <h7 class="navbar-brand" href="#">Diploma</h7>
               <a class="navbar-toggler" type="butt  on" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </a>
