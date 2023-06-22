@@ -21,8 +21,9 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: 400px;
-    margin: 20px auto;
+    /* width: 400px;
+    margin: 20px auto; */
+    float: left;
   }
 
   .search-bar input[type="text"] {
@@ -42,6 +43,7 @@
     cursor: pointer;
     padding: 0;
     margin-top: 10vh;
+    float: left;
   }
 
   .search-bar button[type="submit"]:focus,

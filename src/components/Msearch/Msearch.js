@@ -5,15 +5,16 @@ import firebase from "../../firebase/config"
 import { useContext } from 'react'
 import { MemberContext } from '../../store/Members'
 
+const sm = [];
 function Msearch() {
 
+  // const [sm,setSearchMermers]=useState([])
   const [search, setSearch] = useState("")
   const [state, setState] = useState([])
   const { setMembers } = useContext(MemberContext)
   const { members } = useContext(MemberContext)
   const Search = (e) => {
     e.preventDefault()
-    console.log("hhhhhhhhhh");
     firebase.firestore().collection("members").get().then(((snapshort) => {
 
       const allMembers = snapshort.docs.map((member) => {
@@ -29,17 +30,23 @@ function Msearch() {
       setMembers(allMembers)
       console.log(allMembers);
       {
+        console.log(search);
         if (allMembers) {
           allMembers.map(snap => {
-            if (snap.name === "muthu") {
+            if (snap.name === "jaseel") {
+
 
 
               console.log(snap.id);
 
               firebase.firestore().collection("members").doc(snap.id).get().then(data => {
 
-                setState(data.data())
-                console.log();
+                if (state) {
+                  setState([{state},data.data()])
+                }else{
+                  setState([data.data()])
+                }
+                
 
               }
               )
@@ -47,6 +54,11 @@ function Msearch() {
             }
           })
         }
+        // const SearchMermers ={
+        //   name:state.name,
+
+        // }   
+        // setSearchMermers(SearchMermers)
 
       }
 
@@ -67,39 +79,63 @@ function Msearch() {
             <i class="fa-solid fa-magnifying-glass"></i>
           </button >
 
+
+
         </div>
+
+       
+
       </div>
+
 
       <div class="main">
-        <div class="container">
+          <div class="container ">
 
-        </div>
-        {/* {members.map(mem=>{
-          return <div >
-          <div class="container">
-            <div class="row justify-content-center">
-
-              <div class="carid col-md-5">
-
-                <div>
-                  <h3>hu</h3>
-                </div>
-                <div>
-                  <p>Register Number : 313</p>
-                  <p>S/o abdulla </p>
-                </div>
-              </div>
-
-
-            </div>
           </div>
+
+          {console.log(state)}
+          <>
+
+            {
+
+
+              state.map(mem => {
+                return (
+
+                  <div >
+                    <div class="container ">
+                      <div class="row justify-content-center">
+
+                        <div class="carid col-md-5 ">
+
+                          <div>
+                            <h3>{mem.name}</h3>
+                          </div>
+                          <div>
+                            <p>{mem.birth}</p>
+                            <p>{mem.fname} </p>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+
+                )
+              }
+
+              )
+
+
+            }
+          </>
+
+
+
+
+
         </div>
-        })} */}
-
-
-
-      </div>
-
 
     </div>
   )
