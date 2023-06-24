@@ -1,39 +1,79 @@
-import React from 'react'
-import "./NavBar.css"
+import React, { useEffect } from 'react';
+import './NavBar.css';
 
-import { Link } from 'react-router-dom';
 function NavBar() {
+  useEffect(() => {
+    const expertiseItems = document.querySelectorAll(".expertise-item");
+
+    expertiseItems.forEach(function (item, index) {
+      item.style.animationDelay = index * 0.2 + "s";
+    });
+  }, []);
+
+  const toggleMenu = () => {
+    const dropDownMenu = document.querySelector('.dropdown_menu');
+    const toggleBtnIcon = document.querySelector('.toggle_btn i');
+    dropDownMenu.classList.toggle('open');
+    const isOpen = dropDownMenu.classList.contains('open');
+
+    toggleBtnIcon.className = isOpen
+      ? 'fa-solid fa-xmark'
+      : 'fa-solid fa-bars';
+  };
+
   return (
-    <div class="navbar d-flex col-12 ">
-            <nav class="navbar navbar-expand-lg  navbar-light col-12">
-              <h6 class="navbar-brand" href="#">Diploma</h6>
-              <a class="navbar-toggler" type="butt  on" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </a>
-            
-              <div class="collapse navbar-collapse unni" id="navbarSupportedContent">
-                <div class="">
-                  <ul class="navbar-nav mr-auto ">
-                    <li class="nav-item active">
-                      <Link className="nav-link tec" to="/" >HOME <span class="sr-only">(current)</span></Link>
-                    </li>
-                    <li class="nav-item">
-                      <Link className="nav-link" to="/about">ABOUT</Link>
-                    </li>
-                    <li class="nav-item">
-                      <Link className="nav-link" to="/contact">CONTACT</Link>
-                    </li>
-                  </ul>
-                </div>
-                
-              </div>
-              <div class="form-inline my-2 my-lg-0 d-none d-md-block d-sm-block">
-                <button class="btn btn-outline-dark my-2 my-sm-0 login-btn" type="submit">Login</button>
-              </div>
-            </nav>
+    <div>
+      <header>
+        <div className="navbar">
+          <div className="logo">
+            <a href="search">
+              Diploma<span id="dot"><b>.</b></span>
+              <span id="unscoire">_</span>
+            </a>
           </div>
-    
-  )
+          <ul className="links">
+            <li>
+              <label htmlFor="">01</label>
+              <a href="#">// home</a>
+            </li>
+            <li>
+              <label htmlFor="">02</label>
+              <a href="#">// arabic</a>
+            </li>
+            <li>
+              <label htmlFor="">03</label>
+              <a href="#">// urdu</a>
+            </li>
+          </ul>
+          <a href="#" className="action_btn">
+            Login
+          </a>
+          <div className="toggle_btn" onClick={toggleMenu}>
+            <i className="fa-solid fa-bars"></i>
+          </div>
+        </div>
+        <div className="dropdown_menu">
+          <li>
+            <a href="#">// home</a>
+          </li>
+          <li>
+            <a href="#">// arabic</a>
+          </li>
+          <li>
+            <a href="#">// urdu</a>
+          </li>
+          <li>
+            <a href="#" className="action_btn">
+              Login
+            </a>
+          </li>
+          <li>
+            <p>© 2023. Made with passion by Alathoorpadi Dars.<br/>All right reserved.</p>
+          </li>
+        </div>
+      </header>
+    </div>
+  );
 }
 
-export default NavBar
+export default NavBar;

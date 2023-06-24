@@ -6,13 +6,17 @@ import Form  from "./pages/Form/Form"
 import NavBar from './components/NavBar/NavBar'
 import ListPage from './components/ListPage/ListPage'
 import Member from './store/Members'
-import ProfilCard from "./components/ProfilCard/ProfileCard"
+import ProfaileCard from "./components/ProfileCard/ProfileCard"
+import PersonInfo from './store/DataForCard'
+
+
 
 
 function App() {
   return (
     <div>
       <Member>
+        <PersonInfo>
 
       <NavBar/>
       <Routes>
@@ -24,8 +28,12 @@ function App() {
 
         <Route path="/list" Component={ListPage}></Route>
         
-        <Route path='/profile' Component={ProfilCard}/>
+        <Route path='/profile' Component={ProfaileCard}/>
+
+        <Route path='/pro'/>
       </Routes>
+        </PersonInfo>
+
       </Member>
 
       
