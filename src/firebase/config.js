@@ -1,5 +1,6 @@
 import firebase from "firebase";
 import "firebase/app";
+import "firebase/firestore"
 
 
 

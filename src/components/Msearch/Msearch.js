@@ -1,203 +1,105 @@
-import React from 'react'
+
 import "./Msearch.css"
-import { useState } from 'react'
+import React, { useState, useEffect ,useContext} from 'react';
 import firebase from "../../firebase/config"
-import { useContext } from 'react'
-import { MemberContext } from '../../store/Members'
-import { isEmpty } from "lodash"
-import PersonInfo, { DataOfOne } from '../../store/DataForCard'
-
-
-function Msearch() {
-
-  // const [sm,setSearchMermers]=useState([])
-  const [search, setSearch] = useState("")
-  const [state, setState] = useState([]);
-  const { setMembers } = useContext(MemberContext)
-  const [card, setCard] = useState([])
-  // const { members } = useContext(MemberContext)
-  const { setPersonInfo } = useContext(DataOfOne)
-
-
-
-
-
-
-  const Search = (e) => {
-
-
-
-
-
-
-    const Update = (obj) => {
-      setState((prev) => {
-        return [...prev, obj];
-      });
-      console.log("Data added to state:", obj);
-    };
-    e.preventDefault()
-    firebase.firestore().collection("members").get().then(((snapshort) => {
-
-      const allMembers = snapshort.docs.map((member) => {
-
-
-        return {
-          ...member.data(),
-          id: member.id
-        }
-
-
-      })
-      setMembers(allMembers)
-      console.log(allMembers);
-
-      console.log(search);
-      if (allMembers) {
-
-        allMembers.map((snap) => {
-
-          if (snap.name === search) {
-
-
-            console.log(snap.id);
-
-
-            allMembers.map((obj) => {
-
-
-              if (obj.id === snap.id) {
-
-
-                Update(obj)
-              }
-            })
-
-            // firebase.firestore().collection("members").doc(snap.id).get().then(data => {
-
-
-
-            //    const Data ={
-            //     ...data.data(),
-            //     id:snap.id
-            //   }
-            //   console.log("DATA",Data);
-
-
-            //   const addObjectToArray = (Data) => {
-            //     setState([...state, Data]);
-            //   };     
-            //   addObjectToArray(Data)
-
-            // }
-            // )
-
-          }
-
-
-
-
-
-        })
-
-
-      }
-
-
-
-
-
-    }))
-
-  }
-  return (
-
-
-
-
-
-
-
-    <div >
-      <div className='  search-div'>
-        <div className='img-container'>
-          <img className='img' src="https://alathurpadidars.in/wp-content/uploads/2019/08/Dars-Site-Logo1.png" alt="Logo" />
-        </div>
-        <div className='search-bar col-xs-6 col-md-6'>
-          <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search" aria-label="Search" />
-          <button onClick={Search} type="submit">
-            <i className='fa-solid fa-magnifying-glass'></i>
-          </button>
-          <div class="main">
-          <div className="list-ofs">
-
-         
-
-          {console.log("state data", state)}
-          <>
-
-            {
-
-              state.map(mem => {
-                return (
-
-
-                  <div className=''>
-
-                    <div class="container ">
-                      <div class="row ">
-
-                        <div onClick={() => { setPersonInfo(mem) }} className="carid " >
-                          <h6 ><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-person-vcard" viewBox="0 0 16 16">
-                            <path d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5ZM9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8Zm1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Z" />
-                            <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2ZM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96c.026-.163.04-.33.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1.006 1.006 0 0 1 1 12V4Z" />
-                          </svg></h6>
-                         
-
-                          <div>
-                            <h4 className='text '>{mem.name}</h4>
-                          </div>
-
-                          <p className=' text'> {mem.birth}</p>
-                          <p className='text'>{mem.fname} </p>
-                          <p hidden>{mem.id}</p>
-
-
-
-                        </div>
-
-
-                      </div>
-                    </div>
-                  </div>
-
-                )
-              }
-
-              )
-
-
-            }
-
-          </>
-
-
-
-
-          </div > 
-        </div>
-        </div>
-
+import { DataOfOne } from "../../store/DataForCard";
+import {useHistory} from "react-router-dom"
+
+const SearchBar = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const {setPersonInfo}=useContext(DataOfOne)
+  const history=useHistory();
+
+  useEffect(() => {
+
+    
+    const fetchSearchResults = async () => {
+      const firestore = firebase.firestore();
+      const querySnapshot = await firestore
+        .collection('members')
+        .where('name', '>=', searchQuery)
+        .where('name', '<=', searchQuery + '\uf8ff')
+        .get();
+
+        const data = querySnapshot.docs.map((doc) => {
+          const documentData = doc.data();
+          const documentId = doc.id;
+          return { id: documentId, ...documentData };
+        });
+        console.log(data);
         
+        
+      setSearchResults(data);
+    };
+
+    fetchSearchResults();
+  }, [searchQuery]);
+
+ 
+  const handleInputChange = (event) => {
+              
+      setSearchQuery(event.target.value);
+   
+  };
+  const handleSearchList=(result)=>{
+    setPersonInfo(result)
+    history.push("/card")
+  }
 
 
+
+  return (
+    <div class="row">
+        
+            <div className='home-left'>
+        <div className="App">
+            {/* <div className="imgContainer">
+                <img src="https://alathurpadidars.in/wp-content/uploads/2019/08/Dars-Site-Logo1.png" alt="" />
+            </div> */}
+            <div className='art'>
+                <div className='labelOfSearch'>
+                    
+                </div>
+                <h1 className='sh4'>Search Students<br /><span>NAME</span><br />here</h1>
+                <div className='imgOfSearch'>
+                <img src="https://imgtr.ee/images/2023/06/24/dKq5Q.png" alt="dKq5Q.png" border="0" />
+                </div>
+            </div>
+            
+            <div className="search-bar-container">
+            <div>
+
+              <input placeholder="Search here" className="sinput" type="text" value={searchQuery} onChange={handleInputChange}/>
+              
+                <br className="ul-br"/>
+              
+              <div className="ul-list">
+                
+             <ul>
+              {
+              
+              }
+               {searchResults.map((result) => (
+                 <li onClick={()=>handleSearchList(result)(result)} key={result.id}>{result.name}</li>
+                 
+               ))}
+             </ul>
+              </div>
       </div>
-
-
-
-
+            </div>
+        </div>
     </div>
-  )
-}
+            <div className='home-right'>
+            <div className="HeadLine">
+                <h1>ADSA<br />Deploma</h1>
+            </div>
+            <div className='Description'>
+                <p><span>Alathurpadi Dars</span> is held at Alathurpadi Juma Masjid, a historical Masjid situated in Alathurpadi town, has a history of more than 100 years.</p>
+            </div>
+        </div>
+    </div>
+  );
+};
 
-export default Msearch
+export default SearchBar;
