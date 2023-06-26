@@ -1,11 +1,14 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect,useContext } from 'react';
 import VanillaTilt from 'vanilla-tilt';
 import 'vanilla-tilt/dist/vanilla-tilt.min.js';
 import './ProfileCard.css'
+import PersonInfo, { DataOfOne } from '../../store/DataForCard';
+
 
 const ProfileCard = () => {
   const tiltRef = useRef(null);
+  const {personInfo}=useContext(DataOfOne);
 
   useEffect(() => {
     VanillaTilt.init(tiltRef.current, {
@@ -22,8 +25,8 @@ const ProfileCard = () => {
     <div className="circle-2"></div>
     <div ref={tiltRef} className="card">
         <img src="https://novastela.com/wp-content/uploads/2021/05/steve-and-denesh.png" className="user" alt=""/>
-        <h1>Muhammed Mishab</h1>
-        <span className="text1">S/o Abdulla</span>
+        <h1>{personInfo.name}</h1>
+        <span className="text1">{personInfo.fname}</span>
         <div className="line"></div>
         <div className="text2">
             <div className="form-f">
@@ -36,8 +39,8 @@ const ProfileCard = () => {
                     <p><b>:</b></p>
                 </div>
                 <div className="data1">
-                    <p>313</p>
-                    <p>Nalakath (h) changaleeri mothikkal (po) mannarkkad palakkad (dis) kerala</p>
+                    <p>{personInfo.rnumber}</p>
+                    <p>{personInfo.address}</p>
                 </div>
             </div>
             <div className="form-l">

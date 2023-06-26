@@ -3,13 +3,13 @@ import "./Msearch.css"
 import React, { useState, useEffect ,useContext} from 'react';
 import firebase from "../../firebase/config"
 import { DataOfOne } from "../../store/DataForCard";
-import {useHistory} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const {setPersonInfo}=useContext(DataOfOne)
-  const history=useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -42,12 +42,11 @@ const SearchBar = () => {
       setSearchQuery(event.target.value);
    
   };
-  const handleSearchList=(result)=>{
-    setPersonInfo(result)
-    history.push("/card")
-  }
-
-
+  function handleSearchList(result) {
+    setPersonInfo(result);
+    navigate('/profile');
+  };
+  
 
   return (
     <div class="row">
@@ -81,7 +80,7 @@ const SearchBar = () => {
               
               }
                {searchResults.map((result) => (
-                 <li onClick={()=>handleSearchList(result)(result)} key={result.id}>{result.name}</li>
+                 <li onClick={()=>handleSearchList(result)} key={result.id}>{result.name}</li>
                  
                ))}
              </ul>

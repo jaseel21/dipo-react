@@ -30,7 +30,7 @@ function App() {
         
         <Route path='/profile' Component={ProfaileCard}/>
 
-        <Route path='/pro'/>
+        <Route path='/card' />
       </Routes>
         </PersonInfo>
 
