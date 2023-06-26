@@ -15,7 +15,8 @@ function AddData() {
   const [book,setBook]=useState("")
   const [certi,setCerti]=useState("")
   const [exam,setExam]=useState("")
-  const [call,setCall]=useState("")
+  const [call,setCall]=useState()
+  const [subject,setSubject]=useState()
 
   const handleSub=(e)=>{
     e.preventDefault()
@@ -26,12 +27,13 @@ function AddData() {
       address:address,
       birth:birth,
       phone:phone,
-      whats:whats,
+      wnumber:whats,
       year:year,
       book:book,
       certi:certi,
       exam:exam,
-      call:call
+      call:call,
+      subject:subject
     }).then(()=>{
       alert("form succusfuly submitted")
     })
@@ -86,35 +88,42 @@ function AddData() {
                           </div>
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Text book</label>
-                            <select value={book} onChange={(e)=>setBook(e.target.value)} class="form-select" id="inputGroupSelect02">
-                              <option value={false} selected>Not received</option>
+                            <select  onChange={(e)=>setBook(e.target.value)} class="form-select" id="inputGroupSelect02">
+                              <option value={false} >Not received</option>
                               <option value={true}>Received</option>
                             </select>
                           </div>
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Certificate</label>
-                            <select value={certi} onChange={(e)=>setCerti(e.target.value)} class="form-select" id="inputGroupSelect02">
-                              <option value={false} selected>Not received</option>
+                            <select onChange={(e)=>setCerti(e.target.value)} class="form-select" id="inputGroupSelect02">
+                              <option value={false} >Not received</option>
                               <option value={true} >Received</option>
                             </select>
                           </div>
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Exam</label>
-                            <select value={exam} onChange={(e)=>setExam(e.target.value)} class="form-select" id="inputGroupSelect02">
-                              <option value={false} selected>Not Attented</option>
+                            <select  onChange={(e)=>setExam(e.target.value)} class="form-select" id="inputGroupSelect02">
+                              <option value={false} >Not Attented</option>
                               <option value={true}>Attented</option>
                             </select>
                           </div>
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Have we contacted you ?</label>
-                            <select value={call} onChange={(e)=>setCall(e.target.value)} class="form-select" id="inputGroupSelect02">
+                            <select  onChange={(e)=>setCall(e.target.value)} class="form-select" id="inputGroupSelect02">
+                              <option value={false} selected>No</option>
+                              <option value={true}>Yes</option>
+                            </select>
+                          </div>
+                          <div className='form-group col-12'>
+                            <label for="inputGroupSelect02">Year</label>
+                            <select  onChange={(e)=>setYear(e.target.value)} class="form-select" id="inputGroupSelect02">
                               <option value={false} selected>No</option>
                               <option value={true}>Yes</option>
                             </select>
                           </div>
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Subject</label>
-                            <select onChange={(e)=>setCall(e.target.value)} class="form-select" id="inputGroupSelect02">
+                            <select onChange={(e)=>setSubject(e.target.value)} class="form-select" id="inputGroupSelect02">
                               <option selected value="Arebic">Arabic</option>
                               <option value="Urdu">Urdu</option>
                             </select>

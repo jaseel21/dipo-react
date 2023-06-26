@@ -26,7 +26,7 @@ const ProfileCard = () => {
     <div ref={tiltRef} className="card">
         <img src="https://novastela.com/wp-content/uploads/2021/05/steve-and-denesh.png" className="user" alt=""/>
         <h1>{personInfo.name}</h1>
-        <span className="text1">{personInfo.fname}</span>
+        <span className="text1"><p>s/o</p>{personInfo.fname}</span>
         <div className="line"></div>
         <div className="text2">
             <div className="form-f">
@@ -67,15 +67,15 @@ const ProfileCard = () => {
                     <p><b>:</b></p>
                 </div>
                 <div className="data1">
-                    <p>Arabic</p>
-                    <p>02/02/2002</p>
-                    <p>6238661924</p>
-                    <p>6238661924</p>
-                    <p>1st Year</p>
-                    <p>Not received</p>
-                    <p>Not received</p>
-                    <p>Not Attented</p>
-                    <p>No</p>
+                    <p>{personInfo.subject}</p>
+                    <p>{personInfo.birth}</p>
+                    <p>{personInfo.phone}</p>
+                    <p>{personInfo.whats}</p>
+                    <p>{personInfo.year}</p>
+                    <p>{personInfo.book}</p>
+                    <p>{personInfo.certi}</p>
+                    <p>{personInfo.exam}</p>
+                    <p>{personInfo.call}</p>
                 </div>
             </div>
             <div className="tags">

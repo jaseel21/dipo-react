@@ -45,6 +45,7 @@ const SearchBar = () => {
   function handleSearchList(result) {
     setPersonInfo(result);
     navigate('/profile');
+    console.log(result);
   };
   
 
