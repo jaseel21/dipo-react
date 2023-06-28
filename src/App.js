@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import "./App.css"
 import {Route,Routes} from "react-router-dom"
 import Home from "./pages/home/Home"
@@ -10,11 +10,21 @@ import ProfaileCard from "./components/ProfileCard/ProfileCard"
 import PersonInfo from './store/DataForCard'
 import EditData from './components/EditData/EditData'
 import login from './components/Login/Login'
+import { Authcontext } from './store/FirebaseContext'
+import firebase from './firebase/config'
 
 
 
 
 function App() {
+  const {user,setUser}=useContext(Authcontext)
+
+  useEffect(()=>{
+    firebase.auth().onAuthStateChanged((user)=>{
+      setUser(user)
+    })
+console.log(user);
+  })
   return (
     <div>
       <Member>

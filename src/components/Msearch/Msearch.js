@@ -15,23 +15,28 @@ const SearchBar = () => {
 
     
     const fetchSearchResults = async () => {
-      const firestore = firebase.firestore();
-      const querySnapshot = await firestore
-        .collection('members')
-        .where('name', '>=', searchQuery)
-        .where('name', '<=', searchQuery + '\uf8ff')
-        .get();
+      if (searchQuery.length>0) {
 
-        const data = querySnapshot.docs.map((doc) => {
-          const documentData = doc.data();
-          const documentId = doc.id;
-          return { id: documentId, ...documentData };
-        });
-        console.log(data);
-        
-        
-      setSearchResults(data);
-    };
+
+        const firestore = firebase.firestore();
+        const querySnapshot = await firestore
+          .collection('members')
+          .where('name', '>=', searchQuery)
+          .where('name', '<=', searchQuery + '\uf8ff')
+          .get();
+    
+          const data = querySnapshot.docs.map((doc) => {
+            const documentData = doc.data();
+            const documentId = doc.id;
+            return { id: documentId, ...documentData };
+          });
+          console.log(data);
+          
+          
+        setSearchResults(data);
+          
+      };
+      }
 
     fetchSearchResults();
   }, [searchQuery]);
@@ -73,7 +78,8 @@ const SearchBar = () => {
               <input placeholder="Search here" className="sinput" type="text" value={searchQuery} onChange={handleInputChange}/>
               
                 <br className="ul-br"/>
-              
+                
+             
               <div className="ul-list">
                 
              <ul>
@@ -86,6 +92,7 @@ const SearchBar = () => {
                ))}
              </ul>
               </div>
+              
       </div>
             </div>
         </div>

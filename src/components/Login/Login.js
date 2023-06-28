@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
 import './Login.css'
 import firebase from '../../firebase/config'
+import { useNavigate } from 'react-router-dom'
 
 
 function Login() {
     const[password,setPassword]=useState("")
      const[email,setEmail]=useState("")
+     const navigate=useNavigate()
 
    
     const handleLogin=(e)=>{
         e.preventDefault()
         firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
             alert("Lodded In")
+            navigate("/")
+            
         }).catch((error)=>{
             alert(error.massage)
         })
@@ -37,6 +41,7 @@ function Login() {
             </div> */}
           <h5 type="submit">Login</h5>
           <button type='submit' >Login</button>
+          
         </form>
     </div>
   )

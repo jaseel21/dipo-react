@@ -1,9 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './NavBar.css';
 import { useNavigate } from 'react-router-dom';
+import { Authcontext } from '../../store/FirebaseContext';
+import firebase from "../../firebase/config"
+
 
 function NavBar() {
+
   const navigate=useNavigate()
+  const {user}=useContext(Authcontext)
+  console.log(user);
 
   const Login=()=>{
     navigate("/login")
@@ -51,27 +57,41 @@ function NavBar() {
               <a href="#">// urdu</a>
             </li>
           </ul>
-          <a href="#" className="action_btn">
-            Login
+          <a onClick={Login} className="action_btn">
+          { user ? "ADSA" : "Login"}
           </a>
+          <li>
+          <a onClick={()=>{
+            firebase.auth().signOut();
+            navigate('/login')
+          }} className="action_btn">
+          {user && "LogOut"}
+          </a>
+          </li>
           <div className="toggle_btn" onClick={toggleMenu}>
             <i className="fa-solid fa-bars"></i>
           </div>
         </div>
         <div className="dropdown_menu">
           <li>
-            <a href="#">// home</a>
+            <a >// home</a>
           </li>
           <li>
-            <a href="#">// arabic</a>
+            <a >// arabic</a>
           </li>
           <li>
-            <a href="#">// urdu</a>
+            <a >// urdu</a>
           </li>
           <li>
-            <a onClick={Login} href="#" className="action_btn">
-              Login
+            <a onClick={Login}   className="action_btn">
+              { user ? "ADSA" : "Login"}
             </a>
+            
+          </li>
+          <li>
+            {user && <a   className="action_btn">
+              Logout
+            </a>}
           </li>
           <li>
             <p>© 2023. Made with passion by Alathoorpadi Dars.<br/>All right reserved.</p>

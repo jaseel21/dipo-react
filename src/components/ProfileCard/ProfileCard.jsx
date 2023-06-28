@@ -4,27 +4,30 @@ import VanillaTilt from 'vanilla-tilt';
 import 'vanilla-tilt/dist/vanilla-tilt.min.js';
 import './ProfileCard.css'
 import PersonInfo, { DataOfOne } from '../../store/DataForCard';
+
+
 import firebase from '../../firebase/config';
 import { useNavigate } from 'react-router-dom';
+import { Authcontext } from '../../store/FirebaseContext';
 
 
 const ProfileCard = () => {
+    const {user}=useContext(Authcontext)
   const tiltRef = useRef(null);
   const {personInfo}=useContext(DataOfOne);
   const [personData,setPersonData]=useState([])
+ 
   const navigate = useNavigate()
   console.log(personInfo);
   
-   firebase.firestore().collection("members").doc(personInfo.id).get().then(data=>{
-    setPersonData(data.data())
-    console.log("persondata",data.data());
-   })
+   
 
   const Remove=()=>{
     
     alert("want you delete")
-    firebase.firestore().collection("members").doc(personInfo.id).delete().then(()=>{
+  firebase.firestore().collection("members").doc(personInfo.id).delete().then(()=>{
 
+        
         navigate("/")
     })
   }
@@ -35,7 +38,11 @@ const ProfileCard = () => {
  
   useEffect(() => {
 
-   
+     firebase.firestore().collection("members").doc(personInfo.id).get().then(data=>{
+        setPersonData(data.data())
+       
+        console.log(data.data());
+       })
 
     VanillaTilt.init(tiltRef.current, {
       max: 10,
@@ -105,8 +112,8 @@ const ProfileCard = () => {
                 </div>
             </div>
             <div className="tags">
-                <a  onClick={EditData} href="#"><i class="fa-solid fa-pen-to-square icon-1"></i></a>
-                <a onClick={Remove} href="#"><i class="fa-solid fa-trash icon-2"></i></a>
+                <a  onClick={EditData}><i class="fa-solid fa-pen-to-square icon-1"></i></a>
+                <a  onClick={Remove} ><i class="fa-solid fa-trash icon-2"></i></a>
             </div>
         </div>
     </div>

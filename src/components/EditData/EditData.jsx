@@ -1,15 +1,24 @@
 import React from 'react'
 import "./EditData.css"
 import firebase from '../../firebase/config'
-import { useState,useContext } from 'react'
-import { DataOfOne } from '../../store/DataForCard'
+import { useState,useContext,useEffect } from 'react'
+import { DataOfOne,setPersonInfo } from '../../store/DataForCard'
 import { useNavigate } from 'react-router-dom'
+
+
+
 function EditData() {
+
+
+  
+  const {personInfo}=useContext(DataOfOne)
+  const {setPersonInfo}=useContext(DataOfOne)
+    const navigate=useNavigate()
     
 
-    const {personInfo}=useContext(DataOfOne)
-    const navigate=useNavigate()
- 
+
+
+    
   const [name,setName]=useState(personInfo.name)
   const [father,setFather]=useState(personInfo.fname)
   const [regi,setRegi]=useState(personInfo.rnumber)
@@ -23,6 +32,8 @@ function EditData() {
   const [exam,setExam]=useState(personInfo.exam)
   const [call,setCall]=useState(personInfo.call)
   const [subject,setSubject]=useState(personInfo.subject)
+  console.log("inf",personInfo);
+  
 
  
   const handleSub=(e)=>{
@@ -44,9 +55,24 @@ function EditData() {
       subject:subject
     }).then(()=>{
       alert("form succusfuly submitted")
+      firebase.firestore().collection("members").doc(personInfo.id).get().then(data=>{
+              setPersonInfo(data.data())
+              console.log("dafault",data.data());
+             })
       navigate("/profile")
     })
   }
+
+  // useEffect(() => {
+
+  //   firebase.firestore().collection("members").doc(personInfo.id).get().then(data=>{
+  //       setPersonData(data.data())
+  //       console.log("dafault",data.data());
+  //      })
+       
+  
+  // }, []); 
+
   return (
     <div>
       {/* <div class="circle-1"></div>
@@ -54,7 +80,7 @@ function EditData() {
       <div class="row">
         <div class="headLine">
             <div class="title">
-                <h1 style={{fontWeight: "bold" ,color:"rgb(0, 0, 0); text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)"}}>Student Port</h1>
+                <h1 style={{fontWeight: "bold" ,color:"rgb(0, 0, 0); text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)"}}>Edit</h1>
             </div> 
             
         </div>
@@ -64,8 +90,8 @@ function EditData() {
                     <form onSubmit={handleSub}> 
                         <div className='form-left col-sm-12 col-md-6'>
                         <div className='form-group col-12'>
-                            <label for="formGroupExampleInput">Edit</label>
-                            <input defaultValue={personInfo.name} required value={name} onChange={(e)=>setName(e.target.value)} type="text" class="form-control" id="formGroupExampleInput"/>
+                            <label for="formGroupExampleInput">name</label>
+                            <input defaultValue={name} required value={name} onChange={(e)=>setName(e.target.value)} type="text" class="form-control" id="formGroupExampleInput"/>
                           </div>
                           <div  className='form-group col-12'>
                             <label for="formGroupExampleInput">Father name</label>
