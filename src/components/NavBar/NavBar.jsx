@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import './NavBar.css';
+import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
+  const navigate=useNavigate()
+
+  const Login=()=>{
+    navigate("/login")
+  }
   useEffect(() => {
     const expertiseItems = document.querySelectorAll(".expertise-item");
 
@@ -63,7 +69,7 @@ function NavBar() {
             <a href="#">// urdu</a>
           </li>
           <li>
-            <a href="#" className="action_btn">
+            <a onClick={Login} href="#" className="action_btn">
               Login
             </a>
           </li>

@@ -1,27 +1,34 @@
 import React from 'react'
-import "./AddData.css"
+import "./EditData.css"
 import firebase from '../../firebase/config'
-import { useState } from 'react'
-function AddData() {
+import { useState,useContext } from 'react'
+import { DataOfOne } from '../../store/DataForCard'
+import { useNavigate } from 'react-router-dom'
+function EditData() {
+    
+
+    const {personInfo}=useContext(DataOfOne)
+    const navigate=useNavigate()
  
+  const [name,setName]=useState(personInfo.name)
+  const [father,setFather]=useState(personInfo.fname)
+  const [regi,setRegi]=useState(personInfo.rnumber)
+  const [address,setAddress]=useState(personInfo.address)
+  const [birth,setBirth]=useState(personInfo.birth)
+  const [phone,setPhone]=useState(personInfo.phone)
+  const [whats,setWhats]=useState(personInfo.wnumber)
+  const [year,setYear]=useState(personInfo.year)
+  const [book,setBook]=useState(personInfo.book)
+  const [certi,setCerti]=useState(personInfo.certi)
+  const [exam,setExam]=useState(personInfo.exam)
+  const [call,setCall]=useState(personInfo.call)
+  const [subject,setSubject]=useState(personInfo.subject)
 
-  const [name,setName]=useState("")
-  const [father,setFather]=useState("")
-  const [regi,setRegi]=useState("")
-  const [address,setAddress]=useState("")
-  const [birth,setBirth]=useState("")
-  const [phone,setPhone]=useState("")
-  const [whats,setWhats]=useState("")
-  const [year,setYear]=useState("")
-  const [book,setBook]=useState("false")
-  const [certi,setCerti]=useState("false")
-  const [exam,setExam]=useState("false")
-  const [call,setCall]=useState("false")
-  const [subject,setSubject]=useState("arabic")
-
+ 
   const handleSub=(e)=>{
+    
     e.preventDefault()
-    firebase.firestore().collection("members").add({
+    firebase.firestore().collection("members").doc(personInfo.id).set({
       name:name,
       fname:father,
       rnumber:regi,
@@ -37,6 +44,7 @@ function AddData() {
       subject:subject
     }).then(()=>{
       alert("form succusfuly submitted")
+      navigate("/profile")
     })
   }
   return (
@@ -56,16 +64,16 @@ function AddData() {
                     <form onSubmit={handleSub}> 
                         <div className='form-left col-sm-12 col-md-6'>
                         <div className='form-group col-12'>
-                            <label for="formGroupExampleInput">Student name</label>
-                            <input required value={name} onChange={(e)=>setName(e.target.value)} type="text" class="form-control" id="formGroupExampleInput"/>
+                            <label for="formGroupExampleInput">Edit</label>
+                            <input defaultValue={personInfo.name} required value={name} onChange={(e)=>setName(e.target.value)} type="text" class="form-control" id="formGroupExampleInput"/>
                           </div>
                           <div  className='form-group col-12'>
                             <label for="formGroupExampleInput">Father name</label>
-                            <input required value={father} onChange={(e)=>setFather(e.target.value)} type="text" class="form-control" id="formGroupExampleInput"/>
+                            <input defaultValue={father} required value={father} onChange={(e)=>setFather(e.target.value)} type="text" class="form-control" id="formGroupExampleInput"/>
                           </div>
                           <div  className='form-group col-12'>
                             <label for="formGroupExampleInput">Register number</label>
-                            <input value={regi} onChange={(e)=>setRegi(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
+                            <input defaultValue={regi} value={regi} onChange={(e)=>setRegi(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
                           </div>
                           <div className='form-group col-12'>
                             <label for="exampleFormControlTextarea1">Address</label>
@@ -73,11 +81,11 @@ function AddData() {
                           </div>
                           <div className='form-group col-12'>
                             <label for="exampleInputPassword1">Date of birth</label>
-                            <input required value={birth} onChange={(e)=>setBirth(e.target.value)} type="date" class="form-control" id="exampleInputPassword1"/>
+                            <input defaultValue={birth} required value={birth} onChange={(e)=>setBirth(e.target.value)} type="date" class="form-control" id="exampleInputPassword1"/>
                           </div>
                           <div className='form-group col-12'>
                             <label for="exampleInputPassword1">Phone number</label>
-                            <input required value={phone} onChange={(e)=>setPhone(e.target.value)} type="number" class="form-control" id="exampleInputPassword1"/>
+                            <input defaultValue={phone} required value={phone} onChange={(e)=>setPhone(e.target.value)} type="number" class="form-control" id="exampleInputPassword1"/>
                           </div>
                           
                         </div>
@@ -85,39 +93,39 @@ function AddData() {
                           <div className='form-right col-sm-12 col-md-6'>
                           <div className='form-group col-12'>
                             <label for="exampleInputPassword1">Whatsapp number</label>
-                            <input required value={whats} onChange={(e)=>setWhats(e.target.value)} type="number" class="form-control" id="exampleInputPassword1"/>
+                            <input defaultValue={whats} required value={whats} onChange={(e)=>setWhats(e.target.value)} type="number" class="form-control" id="exampleInputPassword1"/>
                           </div>
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Text book</label>
-                            <select  onChange={(e)=>setBook(e.target.value)} class="form-select" id="inputGroupSelect02">
+                            <select defaultValue={book} onChange={(e)=>setBook(e.target.value)} class="form-select" id="inputGroupSelect02">
                               <option value={false} >Not received</option>
                               <option value={true}>Received</option>
                             </select>
                           </div>
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Certificate</label>
-                            <select  onChange={(e)=>setCerti(e.target.value)} class="form-select" id="inputGroupSelect02">
+                            <select defaultValue={certi} onChange={(e)=>setCerti(e.target.value)} class="form-select" id="inputGroupSelect02">
                               <option value={false} >Not received</option>
                               <option value={true} >Received</option>
                             </select>
                           </div>
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Exam</label>
-                            <select required onChange={(e)=>setExam(e.target.value)} class="form-select" id="inputGroupSelect02">
+                            <select defaultValue={exam} required onChange={(e)=>setExam(e.target.value)} class="form-select" id="inputGroupSelect02">
                               <option value={false} >Not Attented</option>
                               <option value={true}>Attented</option>
                             </select>
                           </div>
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Have we contacted you ?</label>
-                            <select required  onChange={(e)=>setCall(e.target.value)} class="form-select" id="inputGroupSelect02">
+                            <select required defaultValue={call} onChange={(e)=>setCall(e.target.value)} class="form-select" id="inputGroupSelect02">
                               <option value={false} >No</option>
                               <option value={true}>Yes</option>
                             </select>
                           </div>
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Year</label>
-                            <select required  onChange={(e)=>setYear(e.target.value)} class="form-select" id="inputGroupSelect02">
+                            <select required defaultValue={year} onChange={(e)=>setYear(e.target.value)} class="form-select" id="inputGroupSelect02">
                               <option value={2019} >2019</option>
                               <option value={2021} >2021</option>
                               <option value={2023} >2023</option>
@@ -125,7 +133,7 @@ function AddData() {
                           </div>
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Subject</label>
-                            <select required onChange={(e)=>setSubject(e.target.value)} class="form-select" id="inputGroupSelect02">
+                            <select defaultValue={subject} required onChange={(e)=>setSubject(e.target.value)} class="form-select" id="inputGroupSelect02">
                               <option  value="Arebic">Arabic</option>
                               <option value="Urdu">Urdu</option>
                             </select>
@@ -142,4 +150,4 @@ function AddData() {
   )
 }
 
-export default AddData
+export default EditData

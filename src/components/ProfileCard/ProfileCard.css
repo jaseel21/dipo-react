@@ -199,3 +199,19 @@ a{
     font-size:smaller;
 }
 }
+.recived{
+   
+    color: green;
+    font-weight: 3rem;
+    width: auto;
+    background-color: #ffffff9a;
+   
+}
+.n-recived{
+   
+    color: rgb(255, 0, 0);
+    font-weight: 3rem;
+    width: auto;
+    background-color: #ffffff9a;
+    
+}

@@ -1,16 +1,42 @@
 
-import React, { useRef, useEffect,useContext } from 'react';
+import React, { useRef, useEffect,useContext,useState } from 'react';
 import VanillaTilt from 'vanilla-tilt';
 import 'vanilla-tilt/dist/vanilla-tilt.min.js';
 import './ProfileCard.css'
 import PersonInfo, { DataOfOne } from '../../store/DataForCard';
+import firebase from '../../firebase/config';
+import { useNavigate } from 'react-router-dom';
 
 
 const ProfileCard = () => {
   const tiltRef = useRef(null);
   const {personInfo}=useContext(DataOfOne);
+  const [personData,setPersonData]=useState([])
+  const navigate = useNavigate()
+  console.log(personInfo);
+  
+   firebase.firestore().collection("members").doc(personInfo.id).get().then(data=>{
+    setPersonData(data.data())
+    console.log("persondata",data.data());
+   })
 
+  const Remove=()=>{
+    
+    alert("want you delete")
+    firebase.firestore().collection("members").doc(personInfo.id).delete().then(()=>{
+
+        navigate("/")
+    })
+  }
+
+  const EditData=()=>{
+    navigate("/edit")
+  }
+ 
   useEffect(() => {
+
+   
+
     VanillaTilt.init(tiltRef.current, {
       max: 10,
       speed: 400,
@@ -25,8 +51,8 @@ const ProfileCard = () => {
     <div className="circle-2"></div>
     <div ref={tiltRef} className="card">
         <img src="https://novastela.com/wp-content/uploads/2021/05/steve-and-denesh.png" className="user" alt=""/>
-        <h1>{personInfo.name}</h1>
-        <span className="text1"><p>s/o</p>{personInfo.fname}</span>
+        <h1>{personData.name}</h1>
+        <span className="text1"><span>s/o</span> {personData.fname}</span>
         <div className="line"></div>
         <div className="text2">
             <div className="form-f">
@@ -39,8 +65,8 @@ const ProfileCard = () => {
                     <p><b>:</b></p>
                 </div>
                 <div className="data1">
-                    <p>{personInfo.rnumber}</p>
-                    <p>{personInfo.address}</p>
+                    <p>{personData.rnumber}</p>
+                    <p>{personData.address}</p>
                 </div>
             </div>
             <div className="form-l">
@@ -67,20 +93,20 @@ const ProfileCard = () => {
                     <p><b>:</b></p>
                 </div>
                 <div className="data1">
-                    <p>{personInfo.subject}</p>
-                    <p>{personInfo.birth}</p>
-                    <p>{personInfo.phone}</p>
-                    <p>{personInfo.whats}</p>
-                    <p>{personInfo.year}</p>
-                    <p>{personInfo.book}</p>
-                    <p>{personInfo.certi}</p>
-                    <p>{personInfo.exam}</p>
-                    <p>{personInfo.call}</p>
+                    <p>{personData.subject}</p>
+                    <p>{personData.birth}</p>
+                    <p>{personData.phone}</p>
+                    <p>{personData.wnumber}</p>
+                    <p>{personData.year}</p>
+                   {personData.book==="true" ? <p className='recived'>Recived</p> : <p className='n-recived'>Not Recived</p>} 
+                   {personData.certi==="true" ? <p className='recived'>Recived</p> : <p className='n-recived'>Not Recived</p>} 
+                   {personData.exam==="true" ? <p className=''>Attented</p> : <p className='n-recived'>Not Attented</p>} 
+                   {personData.call==="true" ? <p className='recived'>Contacted</p> : <p className='n-recived'>Not Contacted</p>} 
                 </div>
             </div>
             <div className="tags">
-                <a href="#"><i class="fa-solid fa-pen-to-square icon-1"></i></a>
-                <a href="#"><i class="fa-solid fa-trash icon-2"></i></a>
+                <a  onClick={EditData} href="#"><i class="fa-solid fa-pen-to-square icon-1"></i></a>
+                <a onClick={Remove} href="#"><i class="fa-solid fa-trash icon-2"></i></a>
             </div>
         </div>
     </div>

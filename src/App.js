@@ -8,6 +8,8 @@ import ListPage from './components/ListPage/ListPage'
 import Member from './store/Members'
 import ProfaileCard from "./components/ProfileCard/ProfileCard"
 import PersonInfo from './store/DataForCard'
+import EditData from './components/EditData/EditData'
+import login from './components/Login/Login'
 
 
 
@@ -31,6 +33,8 @@ function App() {
         <Route path='/profile' Component={ProfaileCard}/>
 
         <Route path='/card' />
+        <Route path='/edit'Component={EditData} >  </Route>
+        <Route path='/login' Component={login}></Route>
       </Routes>
         </PersonInfo>
 
