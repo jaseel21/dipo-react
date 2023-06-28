@@ -7,11 +7,11 @@ import firebase from "../../firebase/config"
 
 function NavBar() {
 
-  const navigate=useNavigate()
-  const {user}=useContext(Authcontext)
+  const navigate = useNavigate()
+  const { user } = useContext(Authcontext)
   console.log(user);
 
-  const Login=()=>{
+  const Login = () => {
     navigate("/login")
   }
   useEffect(() => {
@@ -57,17 +57,36 @@ function NavBar() {
               <a href="#">// urdu</a>
             </li>
           </ul>
-          <a onClick={Login} className="action_btn">
-          { user ? "ADSA" : "Login"}
+
+
+          <a >
+            
           </a>
           <li>
-          <a onClick={()=>{
-            firebase.auth().signOut();
-            navigate('/login')
-          }} className="action_btn">
-          {user && "LogOut"}
-          </a>
+            <a >
+              
+            </a>
+
+
+          <div class="dropdown">
+            <a onClick={Login} className="action_btn" class="dropbtn">{user ? "ADSA" : "Login"}
+              <i class="fa fa-caret-down"></i>
+            </a>
+            {user &&
+
+
+            <div class="dropdown-content">
+              <a onClick={() => {
+              firebase.auth().signOut();
+              navigate('/login')
+            }} className="action_btn">{user && "LogOut"}</a>
+
+            </div>
+            }
+          </div>
           </li>
+
+
           <div className="toggle_btn" onClick={toggleMenu}>
             <i className="fa-solid fa-bars"></i>
           </div>
@@ -83,18 +102,29 @@ function NavBar() {
             <a >// urdu</a>
           </li>
           <li>
-            <a onClick={Login}   className="action_btn">
-              { user ? "ADSA" : "Login"}
+            <a onClick={Login} className="action_btn">
+              {user ? "ADSA" : "Login"}
             </a>
-            
+
           </li>
           <li>
-            {user && <a   className="action_btn">
+            {user && <a className="action_btn">
               Logout
             </a>}
           </li>
+
+          <div class="dropdown">
+            <button class="dropbtn">Dropdown
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a >LogOut</a>
+
+            </div>
+          </div>
+
           <li>
-            <p>© 2023. Made with passion by Alathoorpadi Dars.<br/>All right reserved.</p>
+            <p>© 2023. Made with passion by Alathoorpadi Dars.<br />All right reserved.</p>
           </li>
         </div>
       </header>

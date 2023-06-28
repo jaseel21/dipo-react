@@ -23,17 +23,27 @@ const ProfileCard = () => {
    
 
   const Remove=()=>{
-    
-    alert("want you delete")
-  firebase.firestore().collection("members").doc(personInfo.id).delete().then(()=>{
 
-        
+    if (user) {
+        alert("want you delete")
+        firebase.firestore().collection("members").doc(personInfo.id).delete().then(()=>{
         navigate("/")
     })
+    }else{
+        navigate("/login")
+    }
+    
+    
   }
 
   const EditData=()=>{
-    navigate("/edit")
+    if (user) {
+        navigate("/edit")
+    }else{
+
+        navigate("/login")
+    }
+    
   }
  
   useEffect(() => {

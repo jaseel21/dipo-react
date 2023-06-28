@@ -54,7 +54,6 @@ function EditData() {
       call:call,
       subject:subject
     }).then(()=>{
-      alert("form succusfuly submitted")
       firebase.firestore().collection("members").doc(personInfo.id).get().then(data=>{
               setPersonInfo(data.data())
               console.log("dafault",data.data());

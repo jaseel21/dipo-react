@@ -39,7 +39,7 @@ function Login() {
                     <label for="inp3">Remember Me</label>
                 </div>
             </div> */}
-          <h5 type="submit">Login</h5>
+         
           <button type='submit' >Login</button>
           
         </form>
