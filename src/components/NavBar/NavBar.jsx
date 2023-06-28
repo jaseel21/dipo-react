@@ -12,7 +12,10 @@ function NavBar() {
   console.log(user);
 
   const Login = () => {
-    navigate("/login")
+    if (!user) {
+      
+      navigate("/login")
+    }
   }
   useEffect(() => {
     const expertiseItems = document.querySelectorAll(".expertise-item");

@@ -117,7 +117,7 @@ const ProfileCard = () => {
                     <p>{personData.year}</p>
                    {personData.book==="true" ? <p className='recived'>Recived</p> : <p className='n-recived'>Not Recived</p>} 
                    {personData.certi==="true" ? <p className='recived'>Recived</p> : <p className='n-recived'>Not Recived</p>} 
-                   {personData.exam==="true" ? <p className=''>Attented</p> : <p className='n-recived'>Not Attented</p>} 
+                   {personData.exam==="true" ? <p className='recived'>Attented</p> : <p className='n-recived'>Not Attented</p>} 
                    {personData.call==="true" ? <p className='recived'>Contacted</p> : <p className='n-recived'>Not Contacted</p>} 
                 </div>
             </div>
