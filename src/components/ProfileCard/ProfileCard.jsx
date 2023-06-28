@@ -15,14 +15,15 @@ const ProfileCard = () => {
     const {user}=useContext(Authcontext)
   const tiltRef = useRef(null);
   const {personInfo}=useContext(DataOfOne);
-  const [personData,setPersonData]=useState([])
  
   const navigate = useNavigate()
-  console.log(personInfo);
+
+ 
   
    
 
   const Remove=()=>{
+    console.log("personInfoId",personInfo.id);
 
     if (user) {
         alert("want you delete")
@@ -48,12 +49,6 @@ const ProfileCard = () => {
  
   useEffect(() => {
 
-     firebase.firestore().collection("members").doc(personInfo.id).get().then(data=>{
-        setPersonData(data.data())
-       
-        console.log(data.data());
-       })
-
     VanillaTilt.init(tiltRef.current, {
       max: 10,
       speed: 400,
@@ -68,8 +63,8 @@ const ProfileCard = () => {
     <div className="circle-2"></div>
     <div ref={tiltRef} className="card">
         <img src="https://novastela.com/wp-content/uploads/2021/05/steve-and-denesh.png" className="user" alt=""/>
-        <h1>{personData.name}</h1>
-        <span className="text1"><span>s/o</span> {personData.fname}</span>
+        <h1>{personInfo.name}</h1>
+        <span className="text1"><span>s/o</span> {personInfo.fname}</span>
         <div className="line"></div>
         <div className="text2">
             <div className="form-f">
@@ -82,8 +77,8 @@ const ProfileCard = () => {
                     <p><b>:</b></p>
                 </div>
                 <div className="data1">
-                    <p>{personData.rnumber}</p>
-                    <p>{personData.address}</p>
+                    <p>{personInfo.rnumber}</p>
+                    <p>{personInfo.address}</p>
                 </div>
             </div>
             <div className="form-l">
@@ -110,15 +105,15 @@ const ProfileCard = () => {
                     <p><b>:</b></p>
                 </div>
                 <div className="data1">
-                    <p>{personData.subject}</p>
-                    <p>{personData.birth}</p>
-                    <p>{personData.phone}</p>
-                    <p>{personData.wnumber}</p>
-                    <p>{personData.year}</p>
-                   {personData.book==="true" ? <p className='recived'>Recived</p> : <p className='n-recived'>Not Recived</p>} 
-                   {personData.certi==="true" ? <p className='recived'>Recived</p> : <p className='n-recived'>Not Recived</p>} 
-                   {personData.exam==="true" ? <p className='recived'>Attented</p> : <p className='n-recived'>Not Attented</p>} 
-                   {personData.call==="true" ? <p className='recived'>Contacted</p> : <p className='n-recived'>Not Contacted</p>} 
+                    <p>{personInfo.subject}</p>
+                    <p>{personInfo.birth}</p>
+                    <p>{personInfo.phone}</p>
+                    <p>{personInfo.wnumber}</p>
+                    <p>{personInfo.year}</p>
+                   {personInfo.book==="true" ? <p className='recived'>Received</p> : <p className='n-recived'>Not Received</p>} 
+                   {personInfo.certi==="true" ? <p className='recived'>Received</p> : <p className='n-recived'>Not Received</p>} 
+                   {personInfo.exam==="true" ? <p className='recived'>Attented</p> : <p className='n-recived'>Not Attented</p>} 
+                   {personInfo.call==="true" ? <p className='recived'>Contacted</p> : <p className='n-recived'>Not Contacted</p>} 
                 </div>
             </div>
             <div className="tags">

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300; 400&display=swap');
 
+
 .cardContainer {
     padding-top: 15vh;
     position: relative;
@@ -66,7 +67,7 @@ a{
     font-size: 1.5rem;
 }
 .card .text1{
-    font-weight: 300;
+    font-weight: bold;
     font-size: 16px;
 }
 .card .line{
@@ -95,6 +96,7 @@ a{
     width: 45%;
     height: auto;
     float: left;
+    font-weight: bold;
 }
 .coma1{
     width: 10%;
@@ -105,6 +107,7 @@ a{
     width: 45%;
     height: auto;
     float: right;
+    font-weight: bold;
 }
 .form-l{
     width: 100%;
@@ -205,6 +208,7 @@ a{
     font-weight: 3rem;
     width: auto;
     background-color: #ffffff9a;
+    font-weight: bold;
    
 }
 .n-recived{
@@ -213,5 +217,6 @@ a{
     font-weight: 3rem;
     width: auto;
     background-color: #ffffff9a;
+    font-weight: bold;
     
 }

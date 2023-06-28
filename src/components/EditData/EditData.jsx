@@ -32,6 +32,7 @@ function EditData() {
   const [exam,setExam]=useState(personInfo.exam)
   const [call,setCall]=useState(personInfo.call)
   const [subject,setSubject]=useState(personInfo.subject)
+  const [id,setId]=useState(personInfo.id)
   console.log("inf",personInfo);
   
 
@@ -52,7 +53,8 @@ function EditData() {
       certi:certi,
       exam:exam,
       call:call,
-      subject:subject
+      subject:subject,
+      id:id
     }).then(()=>{
       firebase.firestore().collection("members").doc(personInfo.id).get().then(data=>{
               setPersonInfo(data.data())
