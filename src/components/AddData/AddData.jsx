@@ -13,7 +13,7 @@ function AddData() {
   const [birth, setBirth] = useState("")
   const [phone, setPhone] = useState("")
   const [whats, setWhats] = useState("")
-  const [year, setYear] = useState("")
+  const [year, setYear] = useState("2019")
   const [book, setBook] = useState("false")
   const [certi, setCerti] = useState("false")
   const [exam, setExam] = useState("false")

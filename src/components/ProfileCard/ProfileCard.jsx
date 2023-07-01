@@ -6,10 +6,10 @@ import './ProfileCard.css'
 import PersonInfo, { DataOfOne } from '../../store/DataForCard';
 
 
+
 import firebase from '../../firebase/config';
 import { useNavigate } from 'react-router-dom';
 import { Authcontext } from '../../store/FirebaseContext';
-
 
 const ProfileCard = () => {
     const {user}=useContext(Authcontext)

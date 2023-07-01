@@ -313,3 +313,14 @@ display: flex;
       padding-top: 5vh;
     }
   }
+  .sub-span-a{
+    color: green;
+    font-weight: bold;
+  }
+  .sub-span-u{
+    color: blue;
+    font-weight: bold;
+  }
+  .search-text{
+    font-weight: bold;
+  }
