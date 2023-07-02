@@ -79,19 +79,20 @@ const SearchBar = () => {
               
                 <br className="ul-br"/>
                 
-             
-              <div className="ul-list">
+             {
+              searchResults.length===0 ?
+               <div hidden></div> :
+               <div className="ul-list">
                 
              <ul>
-              {
-                
-              }
+           
                {searchResults.map((result) => (
                  <li onClick={()=>handleSearchList(result)} className="search-text" key={result.id}>{result.name+" - "} {result.subject==="arabic"?<span className="sub-span-a">{result.subject}</span>:<span className="sub-span-u">{result.subject}</span>} </li>
                  
                ))}
              </ul>
-              </div>
+              </div> 
+             }
               
       </div>
             </div>

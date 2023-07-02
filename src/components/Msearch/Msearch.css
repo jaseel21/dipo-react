@@ -1,20 +1,26 @@
 .ul-br{
-  margin: 1rem;
+  margin: 1.5em;
 
 }
 .ul-list{
-  background-color: whitesmoke;
+  background-color: transparent;
   padding: 0.5rem;
+    
+  max-height: 100px;
+  border: 1px solid black;
   border-radius: 10px;
- 
-    max-height: 100px;
-    overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
  
   
 
 }
 .ul-list ul{  
   color: rgb(1, 1, 2);
+  margin: 0;
+  padding: 0;
+  text-align: start;
   
   
 }
