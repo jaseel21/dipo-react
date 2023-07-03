@@ -9,10 +9,7 @@
   max-height: 100px;
   border: 1px solid black;
   border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
- 
+
   
 
 }
@@ -321,12 +318,12 @@ display: flex;
   }
   .sub-span-a{
     color: green;
-    font-weight: bold;
+    font-weight: normal;
   }
   .sub-span-u{
     color: blue;
-    font-weight: bold;
+    font-weight: normal;
   }
   .search-text{
-    font-weight: bold;
+    font-weight: normal;
   }

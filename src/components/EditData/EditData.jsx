@@ -161,8 +161,8 @@ function EditData() {
                           <div className='form-group col-12'>
                             <label for="inputGroupSelect02">Subject</label>
                             <select defaultValue={subject} required onChange={(e)=>setSubject(e.target.value)} class="form-select" id="inputGroupSelect02">
-                              <option  value="Arebic">Arabic</option>
-                              <option value="Urdu">Urdu</option>
+                              <option  value="arabic">Arabic</option>
+                              <option value="urdu">Urdu</option>
                             </select>
                           </div>
                           
