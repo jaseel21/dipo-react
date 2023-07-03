@@ -4,12 +4,14 @@ import React, { useState, useEffect ,useContext} from 'react';
 import firebase from "../../firebase/config"
 import { DataOfOne } from "../../store/DataForCard";
 import {useNavigate} from "react-router-dom"
+import { Authcontext } from "../../store/FirebaseContext"; 
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const {setPersonInfo}=useContext(DataOfOne)
   const navigate = useNavigate();
+  const {user} =useContext(Authcontext)
 
   useEffect(() => {
 
@@ -17,6 +19,7 @@ const SearchBar = () => {
     const fetchSearchResults = async () => {
       if (searchQuery.length>0) {
 
+        
 
         const firestore = firebase.firestore();
         const querySnapshot = await firestore
@@ -105,6 +108,13 @@ const SearchBar = () => {
             <div className='Description'>
                 <p><span>Alathurpadi Dars</span> is held at Alathurpadi Juma Masjid, a historical Masjid situated in Alathurpadi town, has a history of more than 100 years.</p>
             </div>
+            {user &&
+            
+            <div className="add-button">
+            <button onClick={()=>{navigate('/sub')}} class="button button1">ADD STUDENTS</button>          
+            </div>
+          }
+
         </div>
     </div>
   );
