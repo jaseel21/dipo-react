@@ -3,7 +3,7 @@ import "./AddData.css"
 import firebase from '../../firebase/config'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.css';
+import Swal from "sweetalert2"
 function AddData() {
 
   const navigate = useNavigate()
@@ -38,12 +38,20 @@ function AddData() {
       call: call,
       subject: subject
     }).then(() => {
-      alert("form succusfuly submitted")
+      
+
+Swal.fire({
+  position: 'center',
+  icon: 'success',
+  title: 'Your data has been Successfully submitted',
+  showConfirmButton: false,
+  timer: 1500
+})
       navigate("/sub")
     })
   }
   return (
-    <div className='container'>
+    <div className=''>
       {/* <div class="circle-1"></div>
       <div class="circle-2"></div> */}
       <div class="row">
@@ -53,12 +61,11 @@ function AddData() {
           </div>
 
         </div>
-        <div class="col-12">
+        <div class="container-fluid custom-container">
           <div class="form ">
-            <div className='col-12 '>
+            <div className='card'>
               <form onSubmit={handleSub}>
-                <dic className="row">
-                <div className=' col-md-12 col-xl-6'>
+                <div className=' form-left '>
                   <div className='form-group '>
                     <label for="formGroupExampleInput">Student name</label>
                     <input required value={name} onChange={(e) => setName(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
@@ -86,7 +93,7 @@ function AddData() {
 
                 </div>
 
-                <div className='col-md-12 col-xl-6'>
+                <div className='form-right'>
                   <div className='form-group col-12'>
                     <label for="exampleInputPassword1">Whatsapp number</label>
                     <input required value={whats} onChange={(e) => setWhats(e.target.value)} type="number" class="form-control" id="exampleInputPassword1" />
@@ -136,10 +143,9 @@ function AddData() {
                   </div>
 
                   <div className='form-group col-6'>
-                    <button type="submit" className="submitBtn col-xl-6">Submit</button>
+                    <button type="submit" className="submitBtn">Submit</button>
                     </div>
                 </div>
-                </dic>
                 
               </form>
             </div>

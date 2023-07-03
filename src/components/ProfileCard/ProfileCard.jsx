@@ -3,6 +3,7 @@ import React, { useRef, useEffect,useContext,useState } from 'react';
 import VanillaTilt from 'vanilla-tilt';
 import 'vanilla-tilt/dist/vanilla-tilt.min.js';
 import './ProfileCard.css'
+import Swal from "sweetalert2"
 import PersonInfo, { DataOfOne } from '../../store/DataForCard';
 
 
@@ -26,10 +27,30 @@ const ProfileCard = () => {
     console.log("personInfoId",personInfo.id);
 
     if (user) {
-        alert("want you delete")
+
+
+Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#179728',
+    confirmButtonText: 'delete!'
+  }).then((result) => {
+    if (result.isConfirmed) {
         firebase.firestore().collection("members").doc(personInfo.id).delete().then(()=>{
-        navigate("/")
-    })
+            navigate("/")
+        })
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+    }
+  })
+        
+        
     }else{
         navigate("/login")
     }

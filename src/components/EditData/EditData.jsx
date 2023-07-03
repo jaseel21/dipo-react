@@ -4,6 +4,7 @@ import firebase from '../../firebase/config'
 import { useState,useContext,useEffect } from 'react'
 import { DataOfOne,setPersonInfo } from '../../store/DataForCard'
 import { useNavigate } from 'react-router-dom'
+import Swal from "sweetalert2"
 
 
 
@@ -59,8 +60,16 @@ function EditData() {
       firebase.firestore().collection("members").doc(personInfo.id).get().then(data=>{
               setPersonInfo(data.data())
               console.log("dafault",data.data());
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'applied your changes',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              navigate("/profile")
              })
-      navigate("/profile")
+     
     })
   }
 
