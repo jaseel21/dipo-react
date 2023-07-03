@@ -43,7 +43,7 @@ function AddData() {
 Swal.fire({
   position: 'center',
   icon: 'success',
-  title: 'Your data has been Successfully submitted',
+  title: 'Successfully Submitted',
   showConfirmButton: false,
   timer: 1500
 })

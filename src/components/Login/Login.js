@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import './Login.css'
 import firebase from '../../firebase/config'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import 'animate.css';
+
 
 
 function Login() {
@@ -13,11 +16,27 @@ function Login() {
     const handleLogin=(e)=>{
         e.preventDefault()
         firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
-            alert("Lodded In")
+            
+
+Swal.fire({
+  title: 'Welcome back!',
+  text:"you are an 'ADSA' member",
+  showClass: {
+    popup: 'animate__animated animate__fadeInDown'
+  },
+  hideClass: {
+    popup: 'animate__animated animate__fadeOutUp'
+  }
+})
             navigate("/")
             
         }).catch((error)=>{
-            alert(error.massage)
+            Swal.fire({
+                icon: 'error',
+                title: 'Error...',
+                text: 'Something went wrong!',
+                
+              })
         })
     }
   return (
