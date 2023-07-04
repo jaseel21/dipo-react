@@ -111,7 +111,7 @@ const SearchBar = () => {
             {user &&
             
             <div className="add-button">
-            <button onClick={()=>{navigate('/sub')}} class="button button1">ADD STUDENTS</button>          
+            <button onClick={()=>{navigate('/form')}} class="button button1">ADD STUDENTS</button>          
             </div>
           }
 

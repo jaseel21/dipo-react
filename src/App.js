@@ -35,7 +35,7 @@ console.log(user);
         <Route path='/' Component={Home}>
 
         </Route>
-        <Route path='/sub' Component={Form}>
+        <Route path='/form' Component={Form}>
         </Route>
 
         <Route path="/list" Component={ListPage}></Route>
