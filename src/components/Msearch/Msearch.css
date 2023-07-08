@@ -394,7 +394,7 @@ display: flex;
   align-items: center;
 }
 
-input {
+.search-input {
   background-color: transparent;
   border: none;
   height: 100%;
@@ -403,7 +403,7 @@ input {
   margin-left: 5px;
 }
 
-input:focus {
+.search-input:focus {
   outline: none;
 }
 

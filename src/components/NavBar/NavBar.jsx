@@ -55,10 +55,11 @@ function NavBar() {
       title: 'Logout',
       text: 'Are you sure you want to log out?',
       icon: 'warning',
+      
       showCancelButton: true,
       confirmButtonColor: '#f44336',
       cancelButtonColor: '#2E8B57',
-      confirmButtonText: 'Logout'
+      confirmButtonText: 'Logout',
     }).then((result) => {
       if (result.isConfirmed) {
         firebase.auth().signOut();
@@ -141,13 +142,13 @@ function NavBar() {
         </div>
         <div className="dropdown_menu">
           <li>
-            <a href="#">// home</a>
+            <a onClick={()=>{navigate("/")}}>// home</a>
           </li>
           <li>
-            <a href="#">// arabic</a>
+            <a onClick={()=>{navigate("/about")}}>// about</a>
           </li>
           <li>
-            <a href="#">// urdu</a>
+            <a onClick={()=>{navigate("contact")}}>// contact</a>
           </li>
         {user ? 
     
