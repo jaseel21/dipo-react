@@ -8,60 +8,55 @@ import 'animate.css';
 
 
 function Login() {
-    const[password,setPassword]=useState("")
-     const[email,setEmail]=useState("")
-     const navigate=useNavigate()
+  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("")
+  const navigate = useNavigate()
 
-   
-    const handleLogin=(e)=>{
-        e.preventDefault()
-        firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
-            
 
-Swal.fire({
-  title: 'Welcome back!',
-  text:"you are an 'ADSA' member",
-  showClass: {
-    popup: 'animate__animated animate__fadeInDown'
-  },
-  hideClass: {
-    popup: 'animate__animated animate__fadeOutUp'
+  const handleLogin = (e) => {
+    e.preventDefault()
+    firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+
+
+      Swal.fire({
+        title: 'Welcome back!',
+        text: "you are an 'ADSA' member",
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+      navigate("/")
+
+    }).catch((error) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error...',
+        text: 'Something went wrong!',
+
+      })
+    })
   }
-})
-            navigate("/")
-            
-        }).catch((error)=>{
-            Swal.fire({
-                icon: 'error',
-                title: 'Error...',
-                text: 'Something went wrong!',
-                
-              })
-        })
-    }
   return (
     <div>
-        <form onSubmit={handleLogin} action="submit" className='loginForm'>
+      <form onSubmit={handleLogin} action="submit" className='loginForm'>
             <div class="in1">
-                <input onChange={(e)=>setEmail(e.target.value)} type="text" id="inp1" required/>
+            <input onChange={(e) => setEmail(e.target.value)} type="text" id="inp1" required />
                 <label for="inp1">Email</label>
                 <ion-icon name="mail-outline"></ion-icon>
             </div>
             <div class="in2">
-                <input onChange={(e)=>setPassword(e.target.value)} type="password" id="inp2" required/>
+            <input onChange={(e) => setPassword(e.target.value)} type="password" id="inp2" required />
                 <label for="inp2">Password</label>
                 <ion-icon name="lock-closed-outline"></ion-icon>
             </div>
-            {/* <div class="checkk">
-                <div class="in3">
-                    <input type="checkbox" id="inp3" required/>
-                    <label for="inp3">Remember Me</label>
-                </div>
-            </div> */}
-         
-          <button type='submit' >Login</button>
-          
+            
+            <button type='submit' id="inp4">Login</button>
+            <img src="https://i.postimg.cc/YqVPfgg4/img-01.png" alt="" />
         </form>
+
     </div>
   )
 }

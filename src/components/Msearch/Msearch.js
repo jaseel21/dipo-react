@@ -4,14 +4,17 @@ import React, { useState, useEffect ,useContext} from 'react';
 import firebase from "../../firebase/config"
 import { DataOfOne } from "../../store/DataForCard";
 import {useNavigate} from "react-router-dom"
-import { Authcontext } from "../../store/FirebaseContext"; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
+
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const {setPersonInfo}=useContext(DataOfOne)
   const navigate = useNavigate();
-  const {user} =useContext(Authcontext)
+ 
 
   useEffect(() => {
 
@@ -77,8 +80,15 @@ const SearchBar = () => {
             
             <div className="search-bar-container">
             <div>
-
-              <input placeholder="Search here" className="sinput" type="text" value={searchQuery} onChange={handleInputChange}/>
+            <div className="input-wrapper">
+      <FontAwesomeIcon icon={faSearch} />
+      <input
+        placeholder="Type to search..."
+     
+        type="text" value={searchQuery} onChange={handleInputChange}
+      />
+    </div>
+             
               
                 <br className="ul-br"/>
                 
@@ -103,17 +113,17 @@ const SearchBar = () => {
     </div>
             <div className='home-right'>
             <div className="HeadLine">
-                <h1>ADSA<br />Deploma</h1>
+                <h1>ADSA<br />Diploma</h1>
             </div>
             <div className='Description'>
                 <p><span>Alathurpadi Dars</span> is held at Alathurpadi Juma Masjid, a historical Masjid situated in Alathurpadi town, has a history of more than 100 years.</p>
             </div>
-            {user &&
+            
             
             <div className="add-button">
-            <button onClick={()=>{navigate('/form')}} class="button button1">ADD STUDENTS</button>          
+            <button onClick={()=>{navigate('/form')}} class="button0 button1">ADD STUDENTS</button>          
             </div>
-          }
+          
 
         </div>
     </div>

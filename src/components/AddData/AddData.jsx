@@ -38,55 +38,69 @@ function AddData() {
       call: call,
       subject: subject
     }).then(() => {
-      
+      setName("")
+      setFather("")      
+      setAddress("")
+      setBirth("")
+      setBook("")
+      setCall("")
+      setCerti("")
+      setExam("")
+      setPhone("")
+      setRegi("")
+      setSubject("")
+      setWhats("")
+      setYear("")
 
 Swal.fire({
   position: 'center',
   icon: 'success',
-  title: 'Successfully Submitted',
+  text: 'Successfully Submitted',
   showConfirmButton: false,
   timer: 1500
 })
-      navigate("/sub")
+      navigate("/form")
     })
   }
   return (
-    <div className=''>
+    <div >
       {/* <div class="circle-1"></div>
       <div class="circle-2"></div> */}
-      <div class="row">
+      <div class="formMain">
         <div class="headLine">
           <div class="title">
-            <h1 style={{ fontWeight: "bold", color: "rgb(0, 0, 0); text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)" }}>Student Port</h1>
+            <h1>Student Port</h1>
           </div>
 
         </div>
-        <div class="container-fluid custom-container">
+        <div class=" custom-container">
           <div class="form ">
-            <div className='card'>
+           
               <form onSubmit={handleSub}>
+                <div className="form-div">
+
                 <div className=' form-left '>
                   <div className='form-group '>
                     <label for="formGroupExampleInput">Student name</label>
                     <input required value={name} onChange={(e) => setName(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
                   </div>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="formGroupExampleInput">Father name</label>
                     <input required value={father} onChange={(e) => setFather(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
                   </div>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="formGroupExampleInput">Register number</label>
                     <input value={regi} onChange={(e) => setRegi(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
                   </div>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="exampleFormControlTextarea1">Address</label>
                     <textarea required value={address} onChange={(e) => setAddress(e.target.value)} class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                   </div>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="exampleInputPassword1">Date of birth</label>
                     <input required value={birth} onChange={(e) => setBirth(e.target.value)} type="date" class="form-control" id="exampleInputPassword1" />
                   </div>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="exampleInputPassword1">Phone number</label>
                     <input required value={phone} onChange={(e) => setPhone(e.target.value)} type="number" class="form-control" id="exampleInputPassword1" />
                   </div>
@@ -94,39 +108,39 @@ Swal.fire({
                 </div>
 
                 <div className='form-right'>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="exampleInputPassword1">Whatsapp number</label>
                     <input required value={whats} onChange={(e) => setWhats(e.target.value)} type="number" class="form-control" id="exampleInputPassword1" />
                   </div>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="inputGroupSelect02">Text book</label>
                     <select onChange={(e) => setBook(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value={false} >Not received</option>
                       <option value={true}>Received</option>
                     </select>
                   </div>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="inputGroupSelect02">Certificate</label>
                     <select onChange={(e) => setCerti(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value={false} >Not received</option>
                       <option value={true} >Received</option>
                     </select>
                   </div>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="inputGroupSelect02">Exam</label>
                     <select required onChange={(e) => setExam(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value={false} >Not Attented</option>
                       <option value={true}>Attented</option>
                     </select>
                   </div>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="inputGroupSelect02">Have we contacted you ?</label>
                     <select required onChange={(e) => setCall(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value={false} >No</option>
                       <option value={true}>Yes</option>
                     </select>
                   </div>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="inputGroupSelect02">Year</label>
                     <select required onChange={(e) => setYear(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value={2019} >2019</option>
@@ -134,7 +148,7 @@ Swal.fire({
                       <option value={2023} >2023</option>
                     </select>
                   </div>
-                  <div className='form-group col-12'>
+                  <div className='form-group '>
                     <label for="inputGroupSelect02">Subject</label>
                     <select required onChange={(e) => setSubject(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value="arabic">Arabic</option>
@@ -142,13 +156,14 @@ Swal.fire({
                     </select>
                   </div>
 
-                  <div className='form-group col-6'>
-                    <button type="submit" className="submitBtn">Submit</button>
-                    </div>
+                 <div className="form-group"><button  class="submitBtn" type="submit" >Submit</button> </div>
+                    
+                  
+                </div>
                 </div>
                 
               </form>
-            </div>
+           
           </div>
         </div>
       </div>

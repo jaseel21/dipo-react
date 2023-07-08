@@ -1,9 +1,15 @@
-import React from 'react'
+import React   from 'react'
 import AddData from "../../components/AddData/AddData"
+
 function Form() {
+
+ 
   return (
     <div>
-     <AddData/>
+      <AddData/> 
+    
+
+  
     </div>
   )
 }

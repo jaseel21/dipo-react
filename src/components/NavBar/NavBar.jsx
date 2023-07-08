@@ -1,22 +1,42 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './NavBar.css';
-import { useNavigate } from 'react-router-dom';
-import { Authcontext } from '../../store/FirebaseContext';
-import firebase from "../../firebase/config"
+import { Link, useNavigate } from 'react-router-dom';
+import { Authcontext } from "../../store/FirebaseContext"
+import firebase from '../../firebase/config';
+import Swal from 'sweetalert2';
+
 
 
 function NavBar() {
-
+  const [state, setState] = useState(false)
   const navigate = useNavigate()
   const { user } = useContext(Authcontext)
-  console.log(user);
 
-  const Login = () => {
-    if (!user) {
-      
-      navigate("/login")
+  useEffect(() => {
+    // Attach event listener when the component mounts
+    window.addEventListener('click', handleClickOutside);
+
+    return () => {
+      // Remove event listener when the component unmounts
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  function handleClickOutside(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
     }
   }
+
+
+
   useEffect(() => {
     const expertiseItems = document.querySelectorAll(".expertise-item");
 
@@ -24,6 +44,39 @@ function NavBar() {
       item.style.animationDelay = index * 0.2 + "s";
     });
   }, []);
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: 'Logout',
+      text: 'Are you sure you want to log out?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#f44336',
+      cancelButtonColor: '#2E8B57',
+      confirmButtonText: 'Logout'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        firebase.auth().signOut();
+    navigate('/login')
+        
+      }
+    });
+  };
+
+
+
+
+  const Login = () => {
+
+    
+      navigate("/login")
+    
+  }
 
   const toggleMenu = () => {
     const dropDownMenu = document.querySelector('.dropdown_menu');
@@ -41,7 +94,7 @@ function NavBar() {
       <header>
         <div className="navbar">
           <div className="logo">
-            <a href="search">
+            <a href="/">
               Diploma<span id="dot"><b>.</b></span>
               <span id="unscoire">_</span>
             </a>
@@ -49,48 +102,37 @@ function NavBar() {
           <ul className="links">
             <li>
               <label htmlFor="">01</label>
-              <a href="#">// home</a>
+              <a onClick={()=>{navigate("/")}}>// home</a>
             </li>
             <li>
               <label htmlFor="">02</label>
-              <a href="#">// arabic</a>
+              <a onClick={()=>{navigate("/about")}}>// about</a>
             </li>
             <li>
               <label htmlFor="">03</label>
-              <a href="#">// urdu</a>
+              <a onClick={()=>{navigate("/contact")}}>// contact</a>
             </li>
           </ul>
+          {/* <a  onClick={Login} className="action_btn">
+           
+                    
+          
+          </a> */}
+          <a className='LoginAndLogout'>
+            {user ? <div class="dropdown">
+              <button onClick={myFunction} class="dropbtn">ADSA  <i class="fa fa-caret-down"></i></button>
+              <div id="myDropdown" class="dropdown-content">
+                <a className='Logout' onClick={handleLogout}>Logout</a>
 
-
-          <a >
-            
-          </a>
-          <li>
-            <a >
-              
-            </a>
-
-
-          <div class="dropdown">
-            <a onClick={Login} className="action_btn" class="dropbtn">{user ? "ADSA" : "Login"}
-              <i class="fa fa-caret-down"></i>
-            </a>
-            {user &&
-
-
-            <div class="dropdown-content">
-              <a onClick={() => {
-              firebase.auth().signOut();
-              navigate('/login')
-            }} className="action_btn">{user && "LogOut"}</a>
-
-            </div>
+              </div>
+            </div> :
+            <button onClick={()=>{navigate("/login")}} class="dropbtn">Login</button>
             }
-          </div>
+            
+
+          </a>
 
 
-
-          </li>
 
 
           <div className="toggle_btn" onClick={toggleMenu}>
@@ -99,36 +141,26 @@ function NavBar() {
         </div>
         <div className="dropdown_menu">
           <li>
-            <a >// home</a>
+            <a href="#">// home</a>
           </li>
           <li>
-            <a >// arabic</a>
+            <a href="#">// arabic</a>
           </li>
           <li>
-            <a >// urdu</a>
+            <a href="#">// urdu</a>
           </li>
-          <li>
-            <a onClick={Login} className="action_btn">
-              {user ? "ADSA" : "Login"}
-            </a>
+        {user ? 
+    
 
-          </li>
-          <li>
-            {user && <a className="action_btn">
-              Logout
-            </a>}
-          </li>
-
-          <div class="dropdown">
-            <button class="dropbtn">Dropdown
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a >LogOut</a>
-
-            </div>
-          </div>
-
+        <button className='LogStatus' onClick={handleLogout}>Logout</button>
+   :
+   <button className='LogStatus' onClick={Login}>Login</button>
+   
+   }
+       
+            
+           
+          
           <li>
             <p>© 2023. Made with passion by Alathoorpadi Dars.<br />All right reserved.</p>
           </li>

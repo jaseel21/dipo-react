@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { Component, useContext, useEffect } from 'react'
 import "./App.css"
 import {Route,Routes} from "react-router-dom"
 import Home from "./pages/home/Home"
@@ -12,12 +12,15 @@ import EditData from './components/EditData/EditData'
 import login from './components/Login/Login'
 import { Authcontext } from './store/FirebaseContext'
 import firebase from './firebase/config'
+import Contact from './pages/Contact/Contact'
+import About from "./pages/About/About"
 
 
 
 
 function App() {
   const {user,setUser}=useContext(Authcontext)
+
 
   useEffect(()=>{
     firebase.auth().onAuthStateChanged((user)=>{
@@ -35,7 +38,9 @@ console.log(user);
         <Route path='/' Component={Home}>
 
         </Route>
-        <Route path='/form' Component={Form}>
+        <Route path='/form'  Component={user ? Form : login}>
+ 
+        
         </Route>
 
         <Route path="/list" Component={ListPage}></Route>
@@ -45,6 +50,8 @@ console.log(user);
         <Route path='/card' />
         <Route path='/edit'Component={EditData} >  </Route>
         <Route path='/login' Component={login}></Route>
+        <Route path='/contact' Component={Contact}/>
+        <Route path='/about' Component={About}/>
       </Routes>
         </PersonInfo>
 
