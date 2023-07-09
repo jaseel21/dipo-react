@@ -48,9 +48,22 @@ function NavBar() {
     document.getElementById("myDropdown").classList.toggle("show");
   }
 
+  const toggleMenu = () => {
+    const dropDownMenu = document.querySelector('.dropdown_menu');
+    const toggleBtnIcon = document.querySelector('.toggle_btn i');
+    dropDownMenu.classList.toggle('open');
+    const isOpen = dropDownMenu.classList.contains('open');
+
+    toggleBtnIcon.className = isOpen
+      ? 'fa-solid fa-xmark'
+      : 'fa-solid fa-bars';
+  };
 
 
   const handleLogout = () => {
+
+    toggleMenu()
+
     Swal.fire({
       title: 'Logout',
       text: 'Are you sure you want to log out?',
@@ -79,17 +92,7 @@ function NavBar() {
     
   }
 
-  const toggleMenu = () => {
-    const dropDownMenu = document.querySelector('.dropdown_menu');
-    const toggleBtnIcon = document.querySelector('.toggle_btn i');
-    dropDownMenu.classList.toggle('open');
-    const isOpen = dropDownMenu.classList.contains('open');
-
-    toggleBtnIcon.className = isOpen
-      ? 'fa-solid fa-xmark'
-      : 'fa-solid fa-bars';
-  };
-
+  
   return (
     <div>
       <header>
@@ -142,18 +145,18 @@ function NavBar() {
         </div>
         <div className="dropdown_menu">
           <li>
-            <a onClick={()=>{navigate("/")}}>// home</a>
+            <a onClick={()=>{navigate("/");toggleMenu();}}>// home</a>
           </li>
           <li>
-            <a onClick={()=>{navigate("/about")}}>// about</a>
+            <a onClick={()=>{navigate("/about");toggleMenu();}}>// about</a>
           </li>
           <li>
-            <a onClick={()=>{navigate("contact")}}>// contact</a>
+            <a onClick={()=>{navigate("contact");toggleMenu();}}>// contact</a>
           </li>
         {user ? 
     
 
-        <button className='LogStatus' onClick={handleLogout}>Logout</button>
+        <button className='LogStatus'  onClick={handleLogout}>Logout</button>
    :
    <button className='LogStatus' onClick={Login}>Login</button>
    

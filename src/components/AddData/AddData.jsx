@@ -82,7 +82,7 @@ Swal.fire({
                 <div className=' form-left '>
                   <div className='form-group '>
                     <label for="formGroupExampleInput">Student name</label>
-                    <input required value={name} onChange={(e) => setName(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
+                    <input required value={name} onChange={(e) => setName(e.target.value.toLowerCase())} type="text" class="form-control" id="formGroupExampleInput" />
                   </div>
                   <div className='form-group '>
                     <label for="formGroupExampleInput">Father name</label>

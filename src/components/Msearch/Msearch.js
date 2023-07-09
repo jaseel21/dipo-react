@@ -27,8 +27,8 @@ const SearchBar = () => {
         const firestore = firebase.firestore();
         const querySnapshot = await firestore
           .collection('members')
-          .where('name', '>=', searchQuery)
-          .where('name', '<=', searchQuery + '\uf8ff')
+          .where('name', '>=', searchQuery.toLowerCase())
+          .where('name', '<=', searchQuery.toLowerCase() + '\uf8ff')
           .get();
     
           const data = querySnapshot.docs.map((doc) => {
