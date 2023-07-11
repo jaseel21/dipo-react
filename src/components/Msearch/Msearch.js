@@ -14,8 +14,23 @@ const SearchBar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const {setPersonInfo}=useContext(DataOfOne)
   const navigate = useNavigate();
- 
 
+
+
+
+  function capitalizeFirstLetters(string) {
+    const words = string.split(' ');
+    const capitalizedWords = words.map(word => (
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ));
+    const capitalizedString = capitalizedWords.join(' ');
+  
+    return capitalizedString;
+  }
+  const string = "hello, world! how are you?";
+  const modifiedString = capitalizeFirstLetters(string);
+  
+  
   useEffect(() => {
 
     
@@ -98,9 +113,12 @@ const SearchBar = () => {
                <div className="ul-list">
                 
              <ul>
-           
+       
                {searchResults.map((result) => (
-                 <li onClick={()=>handleSearchList(result)} className="search-text" key={result.id}>{result.name+" - "} {result.subject==="arabic"?<span className="sub-span-a">{result.subject}</span>:<span className="sub-span-u">{result.subject}</span>} </li>
+             
+              
+              
+                 <li onClick={()=>handleSearchList(result)} className="search-text" key={result.id}>{modifiedString} {result.subject==="arabic"?<span className="sub-span-a">{result.subject}</span>:<span className="sub-span-u">{result.subject}</span>} </li>
                  
                ))}
              </ul>

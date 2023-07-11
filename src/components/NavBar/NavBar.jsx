@@ -151,7 +151,7 @@ function NavBar() {
             <a onClick={()=>{navigate("/about");toggleMenu();}}>// about</a>
           </li>
           <li>
-            <a onClick={()=>{navigate("contact");toggleMenu();}}>// contact</a>
+            <a onClick={()=>{navigate("/contact");toggleMenu();}}>// contact</a>
           </li>
         {user ? 
     
