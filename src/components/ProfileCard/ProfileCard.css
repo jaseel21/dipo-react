@@ -172,7 +172,7 @@ table{
     color: green;
     font-weight: 3rem;
     width: auto;
-    background:transparent;
+    background:rgba(255, 255, 255, 0.616);
    
 }
 .n-received{
@@ -180,5 +180,5 @@ table{
     color: rgb(255, 0, 0);
     font-weight: 3rem;
     width: auto;
-    background: transparent;    
+    background: rgba(255, 255, 255, 0.616);    
 }

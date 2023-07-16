@@ -156,9 +156,13 @@ function EditData() {
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Year</label>
                     <select defaultValue={year} required onChange={(e) => setYear(e.target.value)} class="form-select" id="inputGroupSelect02">
+                    <option value={2019} >2018</option>
                       <option value={2019} >2019</option>
+                      <option value={2019} >2020</option>
                       <option value={2021} >2021</option>
+                      <option value={2019} >2022</option>
                       <option value={2023} >2023</option>
+                      <option value={2019} >2024</option>
                     </select>
                   </div>
                   <div className='form-group '>

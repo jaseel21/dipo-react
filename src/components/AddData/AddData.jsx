@@ -14,7 +14,7 @@ function AddData() {
   const [birth, setBirth] = useState("")
   const [phone, setPhone] = useState("")
   const [whats, setWhats] = useState("")
-  const [year, setYear] = useState("2019")
+  const [year, setYear] = useState("2018")
   const [book, setBook] = useState("false")
   const [certi, setCerti] = useState("false")
   const [exam, setExam] = useState("false")
@@ -42,13 +42,13 @@ function AddData() {
       setFather("")      
       setAddress("")
       setBirth("")
-      setBook("")
-      setCall("")
-      setCerti("")
-      setExam("")
+      setBook("false")
+      setCall("false")
+      setCerti("false")
+      setExam("false")
       setPhone("")
       setRegi("")
-      setSubject("")
+      setSubject("arabic")
       setWhats("")
       setYear("")
 
@@ -143,9 +143,15 @@ Swal.fire({
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Year</label>
                     <select required onChange={(e) => setYear(e.target.value)} class="form-select" id="inputGroupSelect02">
-                      <option value={2019} >2019</option>
-                      <option value={2021} >2021</option>
-                      <option value={2023} >2023</option>
+                      <option value={2019} >2018 </option>
+                      <option value={2021} >2019 </option>
+                      <option value={2023} >2020 </option>
+                      <option value={2023} >2021 </option>
+                      <option value={2023} >2022 </option>
+                      <option value={2023} >2023 </option>
+                      <option value={2023} >2024 </option>
+
+
                     </select>
                   </div>
                   <div className='form-group '>
