@@ -5,6 +5,7 @@ import { DataOfOne } from "../../store/DataForCard";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import MainImg from '../assets/fadf (2).png'
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -46,30 +47,10 @@ const SearchBar = () => {
   }
 
   return (
-    <div class="row">
+    <div class="Row">
       <div className="home-left">
         <div className="App">
           <div className="HeadLine">
-            {/* <div className="disco">
-              <div className="Description">
-                <p>
-                  <span>Alathurpadi Dars</span> is held at Alathurpadi Juma
-                  Masjid, a historical Masjid situated in Alathurpadi town, has
-                  a history of more than 100 years.
-                </p>
-              </div>
-
-              <div className="add-button">
-                <button
-                  onClick={() => {
-                    navigate("/form");
-                  }}
-                  class="button0 button1"
-                >
-                  ADD STUDENTS
-                </button>
-              </div>
-            </div> */}
             <div className="Headline-text">
               <h2>Find the Details of Student Registration,</h2>
             </div>
@@ -118,7 +99,7 @@ const SearchBar = () => {
       <div className="home-right">
         <div className="discripton">
           <div className="dis-card">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, qui voluptates illo autem quas facilis vitae accusantium praesentium maiores?</p>
+          <p>We offer a two-year Diploma in Arabic Language and a one-year Diploma in Urdu Language. Our program is conducted by the Alathurpadi Dars Student's Association, located in Melmuri, Malappuram, Kerala.</p>
           <div className="add-button">
           <button
             onClick={() => {
@@ -134,28 +115,10 @@ const SearchBar = () => {
         </div>
         <div className="imgContainer">
           <img
-            src="https://github.com/AdsaClab/diploma/blob/master/fadf.png?raw=true"
+            src={MainImg}
             alt=""
           />
         </div>
-        {/* <div className="Description">
-          <p>
-            <span>Alathurpadi Dars</span> is held at Alathurpadi Juma Masjid, a
-            historical Masjid situated in Alathurpadi town, has a history of
-            more than 100 years.
-          </p>
-        </div>
-
-        <div className="add-button">
-          <button
-            onClick={() => {
-              navigate("/form");
-            }}
-            class="button0 button1"
-          >
-            ADD STUDENTS
-          </button>
-        </div> */}
       </div>
     </div>
   );

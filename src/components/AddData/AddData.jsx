@@ -1,12 +1,77 @@
-import React from 'react'
-import "./AddData.css"
-import firebase from '../../firebase/config'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Swal from "sweetalert2"
+// import React from 'react'
+// import "./AddData.css"
+// import firebase from '../../firebase/config'
+// import { useState } from 'react'
+// import { useNavigate } from 'react-router-dom'
+// import Swal from "sweetalert2"
+// function AddData() {
+  
+
+//   const navigate = useNavigate()
+//   const [name, setName] = useState("")
+//   const [father, setFather] = useState("")
+//   const [regi, setRegi] = useState("")
+//   const [address, setAddress] = useState("")
+//   const [birth, setBirth] = useState("")
+//   const [phone, setPhone] = useState("")
+//   const [whats, setWhats] = useState("")
+//   const [year, setYear] = useState("2018")
+//   const [book, setBook] = useState("false")
+//   const [certi, setCerti] = useState("false")
+//   const [exam, setExam] = useState("false")
+//   const [call, setCall] = useState("false")
+//   const [subject, setSubject] = useState("arabic")
+
+//   const handleSub = (e) => {
+//     e.preventDefault()
+//     firebase.firestore().collection("members").add({
+//       name: name.toLowerCase(),
+//       fname: father,
+//       rnumber: regi,
+//       address: address,
+//       birth: birth,
+//       phone: phone,
+//       wnumber: whats,
+//       year: year,
+//       book: book,
+//       certi: certi,
+//       exam: exam,
+//       call: call,
+//       subject: subject
+//     }).then(() => {
+//       setName("")
+//       setFather("")      
+//       setAddress("")
+//       setBirth("")
+//       setBook("false")
+//       setCall("false")
+//       setCerti("false")
+//       setExam("false")
+//       setPhone("")
+//       setRegi("")
+//       setSubject("arabic")
+//       setWhats("")
+//       setYear("2018")
+
+// Swal.fire({
+//   position: 'center',
+//   icon: 'success',
+//   text: 'Successfully Submitted',
+//   showConfirmButton: false,
+//   timer: 1500
+// })
+//       navigate("/form")
+//     })
+//   }
+
+import React, { useState } from 'react';
+import firebase from '../../firebase/config';
+import { useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2";
+
 function AddData() {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [name, setName] = useState("")
   const [father, setFather] = useState("")
   const [regi, setRegi] = useState("")
@@ -23,7 +88,9 @@ function AddData() {
 
   const handleSub = (e) => {
     e.preventDefault()
-    firebase.firestore().collection("members").add({
+
+    // Get the form data
+    const formData = {
       name: name.toLowerCase(),
       fname: father,
       rnumber: regi,
@@ -37,31 +104,35 @@ function AddData() {
       exam: exam,
       call: call,
       subject: subject
-    }).then(() => {
-      setName("")
-      setFather("")      
-      setAddress("")
-      setBirth("")
-      setBook("false")
-      setCall("false")
-      setCerti("false")
-      setExam("false")
-      setPhone("")
-      setRegi("")
-      setSubject("arabic")
-      setWhats("")
-      setYear("")
+    };
 
-Swal.fire({
-  position: 'center',
-  icon: 'success',
-  text: 'Successfully Submitted',
-  showConfirmButton: false,
-  timer: 1500
-})
-      navigate("/form")
+    // Send the form data to Google Sheets
+    const url = "https://script.google.com/macros/s/AKfycbwJsIi8536-g6mY-i1611z_a3425471f4_u9/exec";
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(formData)
     })
-  }
+      .then((response) => {
+        if (response.ok) {
+          // Success!
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            text: 'Successfully Submitted',
+            showConfirmButton: false,
+            timer: 1500
+          });
+          navigate("/form");
+        } else {
+          // Error!
+          console.log(response);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+   N     }
+
   return (
     <div >
       {/* <div class="circle-1"></div>
@@ -82,11 +153,11 @@ Swal.fire({
                 <div className=' form-left '>
                   <div className='form-group '>
                     <label for="formGroupExampleInput">Student name</label>
-                    <input required value={name} onChange={(e) => setName(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
+                    <input required value={name} onChange={(e) => setName(e.target.value)} type="text" class="form-control" id="formGroupExampleInput sname" />
                   </div>
                   <div className='form-group '>
                     <label for="formGroupExampleInput">Father name</label>
-                    <input required value={father} onChange={(e) => setFather(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
+                    <input required value={father} onChange={(e) => setFather(e.target.value)} type="text" class="form-control" id="formGroupExampleInput fname" />
                   </div>
                   <div className='form-group '>
                     <label for="formGroupExampleInput">Register number</label>

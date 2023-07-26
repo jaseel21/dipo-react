@@ -14,6 +14,7 @@ import { Authcontext } from './store/FirebaseContext'
 import firebase from './firebase/config'
 import Contact from './pages/Contact/Contact'
 import About from "./pages/About/About"
+import Footer from "./components/Footer/Footer"
 
 
 
@@ -54,7 +55,7 @@ console.log(user);
         <Route path='/about' Component={About}/>
       </Routes>
         </PersonInfo>
-
+      <Footer />
       </Member>
 
       

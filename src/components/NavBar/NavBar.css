@@ -106,6 +106,7 @@ header{
 }
 .dropdown_menu.open{
   height:970px;
+  position: fixed;
   z-index: 2;
 }
 
