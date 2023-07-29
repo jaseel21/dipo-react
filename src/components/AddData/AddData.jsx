@@ -1,13 +1,95 @@
-// import React from 'react'
-// import "./AddData.css"
-// import firebase from '../../firebase/config'
-// import { useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
-// import Swal from "sweetalert2"
-// function AddData() {
+import React from 'react'
+import "./AddData.css"
+import firebase from '../../firebase/config'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Swal from "sweetalert2"
+function AddData() {
+  const navigate = useNavigate()
+  const [name, setName] = useState("")
+  const [father, setFather] = useState("")
+  const [regi, setRegi] = useState("")
+  const [address, setAddress] = useState("")
+  const [birth, setBirth] = useState("")
+  const [phone, setPhone] = useState("")
+  const [whats, setWhats] = useState("")
+  const [year, setYear] = useState("2018")
+  const [book, setBook] = useState("false")
+  const [certi, setCerti] = useState("false")
+  const [exam, setExam] = useState("false")
+  const [call, setCall] = useState("false")
+  const [subject, setSubject] = useState("arabic")
+
   
 
-//   const navigate = useNavigate()
+  const handleSub = (e) => {
+
+    const formEle = document.querySelector("form");
+    const formDatab = new FormData(formEle);
+    fetch(
+      "https://script.google.com/macros/s/AKfycbyXtdDB1_TsVK2SM0GnhGgVWFpBE8vV0FGvNzMZdXo7hIoS1_Uuy4f7zB5LngQgiXku/exec",
+      {
+        method: "POST",
+        body: formDatab
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    e.preventDefault()
+    firebase.firestore().collection("members").add({
+      name: name.toLowerCase(),
+      fname: father,
+      rnumber: regi,
+      address: address,
+      birth: birth,
+      phone: phone,
+      wnumber: whats,
+      year: year,
+      book: book,
+      certi: certi,
+      exam: exam,
+      call: call,
+      subject: subject
+    }).then(() => {
+      setName("")
+      setFather("")      
+      setAddress("")
+      setBirth("")
+      setBook("false")
+      setCall("false")
+      setCerti("false")
+      setExam("false")
+      setPhone("")
+      setRegi("")
+      setSubject("arabic")
+      setWhats("")
+      setYear("2018")
+
+Swal.fire({
+  position: 'center',
+  icon: 'success',
+  text: 'Successfully Submitted',
+  showConfirmButton: false,
+  timer: 1500
+})
+      navigate("/form")
+    })
+  }
+
+// import React, { useState } from 'react';
+// import firebase from '../../firebase/config';
+// import { useNavigate } from 'react-router-dom';
+// import Swal from "sweetalert2";
+
+// function AddData() {
+
+//   const navigate = useNavigate();
 //   const [name, setName] = useState("")
 //   const [father, setFather] = useState("")
 //   const [regi, setRegi] = useState("")
@@ -24,7 +106,9 @@
 
 //   const handleSub = (e) => {
 //     e.preventDefault()
-//     firebase.firestore().collection("members").add({
+
+//     // Get the form data
+//     const formData = {
 //       name: name.toLowerCase(),
 //       fname: father,
 //       rnumber: regi,
@@ -38,100 +122,34 @@
 //       exam: exam,
 //       call: call,
 //       subject: subject
-//     }).then(() => {
-//       setName("")
-//       setFather("")      
-//       setAddress("")
-//       setBirth("")
-//       setBook("false")
-//       setCall("false")
-//       setCerti("false")
-//       setExam("false")
-//       setPhone("")
-//       setRegi("")
-//       setSubject("arabic")
-//       setWhats("")
-//       setYear("2018")
+//     };
 
-// Swal.fire({
-//   position: 'center',
-//   icon: 'success',
-//   text: 'Successfully Submitted',
-//   showConfirmButton: false,
-//   timer: 1500
-// })
-//       navigate("/form")
+//     // Send the form data to Google Sheets
+//     const url = "https://script.google.com/macros/s/AKfycbwJsIi8536-g6mY-i1611z_a3425471f4_u9/exec";
+//     fetch(url, {
+//       method: "POST",
+//       body: JSON.stringify(formData)
 //     })
-//   }
-
-import React, { useState } from 'react';
-import firebase from '../../firebase/config';
-import { useNavigate } from 'react-router-dom';
-import Swal from "sweetalert2";
-
-function AddData() {
-
-  const navigate = useNavigate();
-  const [name, setName] = useState("")
-  const [father, setFather] = useState("")
-  const [regi, setRegi] = useState("")
-  const [address, setAddress] = useState("")
-  const [birth, setBirth] = useState("")
-  const [phone, setPhone] = useState("")
-  const [whats, setWhats] = useState("")
-  const [year, setYear] = useState("2018")
-  const [book, setBook] = useState("false")
-  const [certi, setCerti] = useState("false")
-  const [exam, setExam] = useState("false")
-  const [call, setCall] = useState("false")
-  const [subject, setSubject] = useState("arabic")
-
-  const handleSub = (e) => {
-    e.preventDefault()
-
-    // Get the form data
-    const formData = {
-      name: name.toLowerCase(),
-      fname: father,
-      rnumber: regi,
-      address: address,
-      birth: birth,
-      phone: phone,
-      wnumber: whats,
-      year: year,
-      book: book,
-      certi: certi,
-      exam: exam,
-      call: call,
-      subject: subject
-    };
-
-    // Send the form data to Google Sheets
-    const url = "https://script.google.com/macros/s/AKfycbwJsIi8536-g6mY-i1611z_a3425471f4_u9/exec";
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify(formData)
-    })
-      .then((response) => {
-        if (response.ok) {
-          // Success!
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            text: 'Successfully Submitted',
-            showConfirmButton: false,
-            timer: 1500
-          });
-          navigate("/form");
-        } else {
-          // Error!
-          console.log(response);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-   N     }
+//       .then((response) => {
+//         if (response.ok) {
+//           // Success!
+//           Swal.fire({
+//             position: 'center',
+//             icon: 'success',
+//             text: 'Successfully Submitted',
+//             showConfirmButton: false,
+//             timer: 1500
+//           });
+//           navigate("/form");
+//         } else {
+//           // Error!
+//           console.log(response);
+//         }
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//    N     }
 
   return (
     <div >
@@ -153,27 +171,27 @@ function AddData() {
                 <div className=' form-left '>
                   <div className='form-group '>
                     <label for="formGroupExampleInput">Student name</label>
-                    <input required value={name} onChange={(e) => setName(e.target.value)} type="text" class="form-control" id="formGroupExampleInput sname" />
+                    <input required value={name} name="Name" onChange={(e) => setName(e.target.value)} type="text" class="form-control" id="formGroupExampleInput sname"/>
                   </div>
                   <div className='form-group '>
                     <label for="formGroupExampleInput">Father name</label>
-                    <input required value={father} onChange={(e) => setFather(e.target.value)} type="text" class="form-control" id="formGroupExampleInput fname" />
+                    <input required value={father} name="FatherName" onChange={(e) => setFather(e.target.value)} type="text" class="form-control" id="formGroupExampleInput fname" />
                   </div>
                   <div className='form-group '>
                     <label for="formGroupExampleInput">Register number</label>
-                    <input value={regi} onChange={(e) => setRegi(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
+                    <input value={regi} name='RegisterNumber' onChange={(e) => setRegi(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
                   </div>
                   <div className='form-group '>
                     <label for="exampleFormControlTextarea1">Address</label>
-                    <textarea required value={address} onChange={(e) => setAddress(e.target.value)} class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea required value={address} name='Address' onChange={(e) => setAddress(e.target.value)} class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                   </div>
                   <div className='form-group '>
                     <label for="exampleInputPassword1">Date of birth</label>
-                    <input required value={birth} onChange={(e) => setBirth(e.target.value)} type="date" class="form-control" id="exampleInputPassword1" />
+                    <input required value={birth} name='DOB' onChange={(e) => setBirth(e.target.value)} type="date" class="form-control" id="exampleInputPassword1" />
                   </div>
                   <div className='form-group '>
                     <label for="exampleInputPassword1">Phone number</label>
-                    <input required value={phone} onChange={(e) => setPhone(e.target.value)} type="number" class="form-control" id="exampleInputPassword1" />
+                    <input required value={phone} name='PhoneNumber' onChange={(e) => setPhone(e.target.value)} type="number" class="form-control" id="exampleInputPassword1" />
                   </div>
 
                 </div>
@@ -181,39 +199,39 @@ function AddData() {
                 <div className='form-right'>
                   <div className='form-group '>
                     <label for="exampleInputPassword1">Whatsapp number</label>
-                    <input required value={whats} onChange={(e) => setWhats(e.target.value)} type="number" class="form-control" id="exampleInputPassword1" />
+                    <input required value={whats} name='WhtsappNumber' onChange={(e) => setWhats(e.target.value)} type="number" class="form-control" id="exampleInputPassword1" />
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Text book</label>
-                    <select onChange={(e) => setBook(e.target.value)} class="form-select" id="inputGroupSelect02">
-                      <option value={false} >Not received</option>
-                      <option value={true}>Received</option>
+                    <select name='TextBook' onChange={(e) => setBook(e.target.value)} class="form-select" id="inputGroupSelect02">
+                      <option value={"Not received"}>Not received</option>
+                      <option value={"Received"}>Received</option>
                     </select>
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Certificate</label>
-                    <select onChange={(e) => setCerti(e.target.value)} class="form-select" id="inputGroupSelect02">
-                      <option value={false} >Not received</option>
-                      <option value={true} >Received</option>
+                    <select name='Certificate' onChange={(e) => setCerti(e.target.value)} class="form-select" id="inputGroupSelect02">
+                      <option value={"Not received"} >Not received</option>
+                      <option value={"Received"} >Received</option>
                     </select>
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Exam</label>
-                    <select required onChange={(e) => setExam(e.target.value)} class="form-select" id="inputGroupSelect02">
-                      <option value={false} >Not Attented</option>
-                      <option value={true}>Attented</option>
+                    <select name='Exam' required onChange={(e) => setExam(e.target.value)} class="form-select" id="inputGroupSelect02">
+                      <option value={"Not Attented"} >Not Attented</option>
+                      <option value={"Attented"}>Attented</option>
                     </select>
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Have we contacted you ?</label>
-                    <select required onChange={(e) => setCall(e.target.value)} class="form-select" id="inputGroupSelect02">
-                      <option value={false} >No</option>
-                      <option value={true}>Yes</option>
+                    <select name='Contacted' required onChange={(e) => setCall(e.target.value)} class="form-select" id="inputGroupSelect02">
+                      <option value={"No"} >No</option>
+                      <option value={"Yes"}>Yes</option>
                     </select>
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Year</label>
-                    <select required onChange={(e) => setYear(e.target.value)} class="form-select" id="inputGroupSelect02">
+                    <select name='Year' required onChange={(e) => setYear(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value={2019} >2018 </option>
                       <option value={2021} >2019 </option>
                       <option value={2023} >2020 </option>
@@ -227,7 +245,7 @@ function AddData() {
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Subject</label>
-                    <select required onChange={(e) => setSubject(e.target.value)} class="form-select" id="inputGroupSelect02">
+                    <select name='Subject' required onChange={(e) => setSubject(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value="arabic">Arabic</option>
                       <option value="urdu">Urdu</option>
                     </select>
@@ -239,9 +257,17 @@ function AddData() {
                 </div>
                 </div>
                 
-              </form>
+               </form>
+
+               {/* <form onSubmit={(e) => Submit(e)}>
+                 <input type="text" name='Name' />
+                 <input type="text" name='FatherName' />
+                 <input type="text" name='Email' />
+                 <input type="text" name='Message' />
+                 <input type="submit" name='Name' />
+               </form> */}
            
-          </div>
+           </div>
         </div>
       </div>
     </div>

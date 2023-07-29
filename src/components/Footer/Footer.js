@@ -1,7 +1,9 @@
 import React from "react";
 import "./Footer.css";
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
+  const navigate = useNavigate()
   return (
     <div>
       <footer class="footer">
@@ -11,13 +13,13 @@ function Footer() {
               <h4>Adsa Diploma</h4>
               <ul>
                 <li>
-                  <a href="#">Home</a>
+                  <a onClick={()=>{navigate("/")}}>Home</a>
                 </li>
                 <li>
-                  <a href="#">About</a>
+                  <a onClick={()=>{navigate("/about")}}>About</a>
                 </li>
                 <li>
-                  <a href="#">Contact</a>
+                  <a onClick={()=>{navigate("/contact")}}>Contact</a>
                 </li>
                 <li>
                   <p>Copyright © 2021 Adsa Diploma All rights reserved</p>
