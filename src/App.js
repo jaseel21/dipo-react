@@ -32,7 +32,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" Component={Home}></Route>
-            <Route path="/form" Component={user ? Form : login}></Route>
+            <Route path="/form" Component={user ? Form : login }></Route>
 
             <Route path="/list" Component={ListPage}></Route>
 
@@ -47,8 +47,8 @@ function App() {
             <Route path="/about" Component={About} />
           </Routes>
         </PersonInfo>
-        {/* {location.pathname !== '/login'  && <Footer />} */}
-        { login ? null :<Footer></Footer>}
+        {location.pathname !== '/login'  && <Footer />}
+        {/* { login ? null :<Footer></Footer>} */}
       </Member>
     </div>
   );
