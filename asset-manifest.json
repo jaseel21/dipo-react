@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/dipo-react/static/css/main.fcc50b71.css",
-    "main.js": "/dipo-react/static/js/main.8cecfc65.js",
+    "main.css": "/dipo-react/static/css/main.8c8fc0f9.css",
+    "main.js": "/dipo-react/static/js/main.8abb50f6.js",
     "static/media/fadf (2).png": "/dipo-react/static/media/fadf (2).78c3d40dbd606a9379a9.png",
-    "static/media/about.png": "/dipo-react/static/media/about.332080265c4f2b1eee88.png",
+    "static/media/about.png": "/dipo-react/static/media/about.00fa9d2f81fd41c77c3d.png",
     "index.html": "/dipo-react/index.html",
-    "main.fcc50b71.css.map": "/dipo-react/static/css/main.fcc50b71.css.map",
-    "main.8cecfc65.js.map": "/dipo-react/static/js/main.8cecfc65.js.map"
+    "main.8c8fc0f9.css.map": "/dipo-react/static/css/main.8c8fc0f9.css.map",
+    "main.8abb50f6.js.map": "/dipo-react/static/js/main.8abb50f6.js.map"
   },
   "entrypoints": [
-    "static/css/main.fcc50b71.css",
-    "static/js/main.8cecfc65.js"
+    "static/css/main.8c8fc0f9.css",
+    "static/js/main.8abb50f6.js"
   ]
 }
