@@ -15,6 +15,8 @@ import firebase from "./firebase/config";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import Footer from "./components/Footer/Footer";
+import Loding from "./pages/Loding/Loding";
+
 
 function App() {
   const { user, setUser } = useContext(Authcontext);
@@ -27,11 +29,12 @@ function App() {
   });
   return (
     <div>
+      <Loding/>
       <Member>
         <PersonInfo>
           <NavBar />
           <Routes>
-            <Route path="/" Component={Home}></Route>
+            <Route path="/home" Component={Home}></Route>
             <Route path="/form" Component={user ? Form : login }></Route>
 
             <Route path="/list" Component={ListPage}></Route>
