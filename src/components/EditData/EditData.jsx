@@ -5,6 +5,7 @@ import { useState,useContext } from 'react'
 import { DataOfOne } from '../../store/DataForCard'
 import { useNavigate } from 'react-router-dom'
 import Swal from "sweetalert2"
+import Footer from '../Footer/Footer'
 
 
 
@@ -77,6 +78,7 @@ function EditData() {
 
   return (
     <div>
+      <div>
       {/* <div class="circle-1"></div>
       <div class="circle-2"></div> */}
       <div class="formMain">
@@ -184,6 +186,8 @@ function EditData() {
           </div>
         </div>
       </div>
+    </div>
+    <Footer/>
     </div>
   )
 }

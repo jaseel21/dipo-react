@@ -4,6 +4,7 @@ import firebase from '../../firebase/config'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Swal from "sweetalert2"
+import Footer from '../Footer/Footer'
 function AddData() {
   const navigate = useNavigate()
   const [name, setName] = useState("")
@@ -152,13 +153,14 @@ Swal.fire({
 //    N     }
 
   return (
-    <div >
+    <div>
+      <div >
       {/* <div class="circle-1"></div>
       <div class="circle-2"></div> */}
       <div class="formMain">
         <div class="headLine">
           <div class="title">
-            <h1>Student Port</h1>
+            {/* <h1>Student Port</h1> */} <br /><br />
           </div>
 
         </div>
@@ -270,6 +272,8 @@ Swal.fire({
            </div>
         </div>
       </div>
+    </div>
+    <Footer/>
     </div>
   )
 }

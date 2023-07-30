@@ -1,4 +1,4 @@
-import React, {  useContext, useEffect } from "react";
+import React, {  useContext, useEffect, useState } from "react";
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/home/Home";
@@ -21,6 +21,23 @@ import Loding from "./pages/Loding/Loding";
 function App() {
   const { user, setUser } = useContext(Authcontext);
   const location = useLocation();
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Add a setTimeout to simulate loading for demonstration purposes.
+    // You can remove this and use your actual loading logic
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    // Your actual loading logic using Firebase auth here
+    // firebase.auth().onAuthStateChanged((user) => {
+    //   setUser(user);
+    //   setLoading(false);
+    // });
+  }, []);
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       setUser(user);
@@ -29,7 +46,9 @@ function App() {
   });
   return (
     <div>
-      <Loding/>
+      {loading ? (
+        <Loding />
+      ) : (
       <Member>
         <PersonInfo>
           <NavBar />
@@ -50,9 +69,10 @@ function App() {
             <Route path="/about" Component={About} />
           </Routes>
         </PersonInfo>
-        {location.pathname !== '/login'  && <Footer />}
+        {/* {location.pathname !== '/login'  && <Footer />} */}
         {/* { login ? null :<Footer></Footer>} */}
       </Member>
+      )}
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import React from 'react'
 import './About.css'
 import Image from '../assets/about.png'
+import Footer from '../../components/Footer/Footer'
 
 function About() {
   return (
-    <div className='about'>
+    <div>
+		<div className='about'>
         <div class="about-main">
 			<img src={Image} alt=""/>
 			<div class="all-text">
@@ -22,7 +24,10 @@ function About() {
 				</p>
 			</div>
 		</div>
+		
     </div>
+	<Footer/>
+	</div>
   )
 }
 

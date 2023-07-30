@@ -10,6 +10,8 @@ function Loding() {
     let progressEndValue = 100;
     let speed = 15;
 
+    
+
     let progress = setInterval(() => {
       progressValue++;
       valueContainer.textContent = `${progressValue}`;

@@ -1,9 +1,11 @@
 import React from 'react'
 import './Contact.css'
+import Footer from '../../components/Footer/Footer'
 
 function Contact() {
   return (
-    <div className='contact-main'>
+   <div>
+     <div className='contact-main'>
         <div class="container">
     <div class="content">
       <div class="left-side">
@@ -48,6 +50,8 @@ function Contact() {
     </div>
   </div>
     </div>
+    <Footer/>
+   </div>
   )
 }
 

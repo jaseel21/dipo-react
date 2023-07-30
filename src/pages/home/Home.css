@@ -1,4 +1,4 @@
-.Home-body{
+/* .Home-body{
     width: auto;
     height: 100vh;
 
@@ -9,4 +9,166 @@
         height:auto;
         padding-bottom: 15%;
     }
+} */
+
+.Home-body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+.msearch-container{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5%;
+
+}
+.home-ms-right,
+.home-ms-left{
+    width: 40%;   
+}
+.home-img-container{
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/fadf\ \(2\).png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.discripton{
+    display: flex;
+    justify-content: center;
+    height: auto;
+  }
+
+  .dis-card{
+    width: 90%;
+    height: auto;
+    background-color: #36363667;
+    padding:7vh;
+    border-radius: 10px;
+  }
+  .dis-card p{
+    color: white;
+  }
+  .Headline-text h2{
+    position: relative;
+    color: #131313;
+    font-size: 3rem;
+    width: 100%;
+    line-height: 65px;
+  }
+  .my-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .my-button:hover {
+    background-color: #45a049;
+  }
+  
+  .my-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #4CAF50; /* Add a focus outline */
+  }
+
+  /* Add button style */
+  .button0 {
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .button1 {
+    background-color: teal;
+    color: white;
+    border: 2px solid teal;
+    border-radius: 0px;
+  }
+  
+  .button1:hover {
+    background-color:  rgb(8, 85, 85);
+    color: white;
+  }
+  .add-button{
+    padding-top: 1rem;
+  }
+  @media (max-width: 1400px){
+    .msearch-container{
+        width: 90%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 5%;
+        padding-top: 10vh;
+        padding-bottom: 10vh;
+    
+    }
+    .home-ms-right,
+    .home-ms-left{
+        width: 90%;   
+    }
+    .discripton{
+        padding-top: 5vh;
+      }
+    .dis-card{
+        padding:3vh;
+      }
+  }
+  .Headline-text h2{
+    position: relative;
+    color: #131313;
+    font-size: 2.5rem;
+    width: 100%;
+    line-height: 50px;
+  }
+
+
+  @media (max-width: 780px){
+    .msearch-container{
+        width: 90%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5%;
+        padding-top: 10vh;
+        padding-bottom: 10vh;
+    
+    }
+    .home-ms-right,
+    .home-ms-left{
+        width: 90%;   
+    }
+    .discripton{
+        padding-top: 5vh;
+      }
+    .dis-card{
+        padding:3vh;
+      }
+  }
+  .Headline-text h2{
+    position: relative;
+    color: #131313;
+    font-size: 2.5rem;
+    width: 100%;
+    line-height: 50px;
+  }

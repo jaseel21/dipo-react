@@ -5,7 +5,7 @@ import { DataOfOne } from "../../store/DataForCard";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import MainImg from '../assets/fadf (2).png'
+// import MainImg from '../assets/fadf (2).png'
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -47,9 +47,7 @@ const SearchBar = () => {
   }
 
   return (
-    <div class="Row">
       <div className="home-left">
-        <div className="App">
           <div className="HeadLine">
             <div className="Headline-text">
               <h2>Find the Details of Student Registration,</h2>
@@ -94,33 +92,7 @@ const SearchBar = () => {
               </div>
             </div>
           </div>
-        </div>
       </div>
-      <div className="home-right">
-        <div className="discripton">
-          <div className="dis-card">
-          <p>We offer a two-year Diploma in Arabic Language and a one-year Diploma in Urdu Language. Our program is conducted by the Alathurpadi Dars Student's Association, located in Melmuri, Malappuram, Kerala.</p>
-          <div className="add-button">
-          <button
-            onClick={() => {
-              navigate("/form");
-            }}
-            class="button0 button1"
-          >
-            ADD STUDENTS
-          </button>
-        </div>
-          </div>
-          
-        </div>
-        <div className="imgContainer">
-          <img
-            src={MainImg}
-            alt=""
-          />
-        </div>
-      </div>
-    </div>
   );
 };
 
