@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Authcontext } from "../../store/FirebaseContext"
 import firebase from '../../firebase/config';
 import Swal from 'sweetalert2';
+import Home from '../../pages/home/Home';
 
 
 

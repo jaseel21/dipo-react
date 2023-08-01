@@ -1,4 +1,4 @@
-import React, {  useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState,Navigate } from "react";
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/home/Home";
@@ -17,25 +17,19 @@ import About from "./pages/About/About";
 import Footer from "./components/Footer/Footer";
 import Loding from "./pages/Loding/Loding";
 
-
 function App() {
   const { user, setUser } = useContext(Authcontext);
   const location = useLocation();
 
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Add a setTimeout to simulate loading for demonstration purposes.
-    // You can remove this and use your actual loading logic
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    // Simulate loading by waiting for 3 seconds
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1555);
 
-    // Your actual loading logic using Firebase auth here
-    // firebase.auth().onAuthStateChanged((user) => {
-    //   setUser(user);
-    //   setLoading(false);
-    // });
+    return () => clearTimeout(loadingTimer);
   }, []);
 
   useEffect(() => {
@@ -46,15 +40,17 @@ function App() {
   });
   return (
     <div>
-      {loading ? (
-        <Loding />
-      ) : (
+
       <Member>
         <PersonInfo>
-          <NavBar />
+        {isLoading ? (
+        <Loding />
+      ) : ( <>
+        <NavBar/>
           <Routes>
-            <Route path="/home" Component={Home}></Route>
-            <Route path="/form" Component={user ? Form : login }></Route>
+            
+          <Route path="/*" element={<Home />} />
+            <Route path="/form" Component={user ? Form : login}></Route>
 
             <Route path="/list" Component={ListPage}></Route>
 
@@ -68,11 +64,13 @@ function App() {
             <Route path="/contact" Component={Contact} />
             <Route path="/about" Component={About} />
           </Routes>
+          </>
+          )}
         </PersonInfo>
         {/* {location.pathname !== '/login'  && <Footer />} */}
         {/* { login ? null :<Footer></Footer>} */}
       </Member>
-      )}
+      
     </div>
   );
 }
