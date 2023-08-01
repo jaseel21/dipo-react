@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/dipo-react/static/css/main.cb90ab46.css",
-    "main.js": "/dipo-react/static/js/main.c77ee933.js",
+    "main.js": "/dipo-react/static/js/main.c372e7fe.js",
     "static/media/fadf (2).png": "/dipo-react/static/media/fadf (2).78c3d40dbd606a9379a9.png",
     "static/media/about.png": "/dipo-react/static/media/about.00fa9d2f81fd41c77c3d.png",
     "index.html": "/dipo-react/index.html",
     "main.cb90ab46.css.map": "/dipo-react/static/css/main.cb90ab46.css.map",
-    "main.c77ee933.js.map": "/dipo-react/static/js/main.c77ee933.js.map"
+    "main.c372e7fe.js.map": "/dipo-react/static/js/main.c372e7fe.js.map"
   },
   "entrypoints": [
     "static/css/main.cb90ab46.css",
-    "static/js/main.c77ee933.js"
+    "static/js/main.c372e7fe.js"
   ]
 }
