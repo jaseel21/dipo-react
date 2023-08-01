@@ -16,6 +16,7 @@ import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import Footer from "./components/Footer/Footer";
 import Loding from "./pages/Loding/Loding";
+import AnimCursor from "./components/AnimCursor";
 
 function App() {
   const { user, setUser } = useContext(Authcontext);
@@ -40,6 +41,7 @@ function App() {
   });
   return (
     <div>
+      <AnimCursor/>
 
       <Member>
         <PersonInfo>
@@ -67,8 +69,6 @@ function App() {
           </>
           )}
         </PersonInfo>
-        {/* {location.pathname !== '/login'  && <Footer />} */}
-        {/* { login ? null :<Footer></Footer>} */}
       </Member>
       
     </div>

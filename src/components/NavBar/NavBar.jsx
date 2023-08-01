@@ -99,7 +99,7 @@ function NavBar() {
       <header>
         <div className="navbar">
           <div className="logo">
-            <a href="/home">
+            <a onClick={()=>{navigate("/home")}}>
               Diploma<span id="dot"><b>.</b></span>
               <span id="unscoire">_</span>
             </a>
@@ -159,7 +159,7 @@ function NavBar() {
 
         <button className='LogStatus'  onClick={handleLogout}>Logout</button>
    :
-   <button className='LogStatus' onClick={Login}>Login</button>
+   <button className='LogStatus' onClick={()=>{navigate("/Login");toggleMenu();}}>Login</button>
    
    }
        

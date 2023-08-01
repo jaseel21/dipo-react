@@ -150,11 +150,11 @@ table{
 
 @media (max-width: 780px){
     .circle-1{
-        top: 60%;
+        top:10%;
         left: 50%;
     }
     .circle-2{
-        top: 10%;
+        top: 60%;
         left: 0%;
     }
     .card{
@@ -179,6 +179,5 @@ table{
    
     color: rgb(255, 0, 0);
     font-weight: 3rem;
-    width: auto;
-    background: rgba(255, 255, 255, 0.616);    
+    width: auto;   
 }
