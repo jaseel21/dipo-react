@@ -24,6 +24,7 @@ function AnimCursor() {
         'i',
         'p',
         'h2',
+        'h1',
         'textarea',
         'button',
         '.link'
