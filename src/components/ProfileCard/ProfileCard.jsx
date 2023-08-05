@@ -33,6 +33,8 @@ Swal.fire({
     title: 'Are you sure?',
     text: "You won't be able to revert this!",
     icon: 'warning',
+    
+    
     showCancelButton: true,
     confirmButtonColor: '#d33',
     cancelButtonColor: '#179728',
@@ -41,6 +43,17 @@ Swal.fire({
     if (result.isConfirmed) {
         firebase.firestore().collection("members").doc(personInfo.id).delete().then(()=>{
             navigate("/")
+
+            fetch('https://sheetdb.io/api/v1/m97aq338b4f11/id/'+personInfo.gid, {
+    method: 'DELETE',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+
         })
       Swal.fire(
         'Deleted!',
@@ -131,22 +144,22 @@ Swal.fire({
             <tr className='contant'>
                 <td className='data-name'>Text book</td>
                 <td className='coma'>:</td>
-               {personInfo.book==="true" ? <td className='received'> Received</td>:  <td className='n-received'> Not received</td> } 
+               {personInfo.book==="Received" ? <td className='received'> Received</td>:  <td className='n-received'> Not received</td> } 
             </tr>
             <tr className='contant'>
                 <td className='data-name'>Certificate</td>
                 <td className='coma'>:</td>
-                {personInfo.certi==="true" ? <td className='received'> Received</td>:  <td className='n-received'> Not received</td> } 
+                {personInfo.certi==="Received" ? <td className='received'> Received</td>:  <td className='n-received'> Not received</td> } 
             </tr>
             <tr className='contant'>
                 <td className='data-name'>Exam</td>
                 <td className='coma'>:</td>
-                {personInfo.exam==="true" ? <td className='received'> Attented</td>:  <td className='n-received'> Not Attented</td> } 
+                {personInfo.exam==="Attented" ? <td className='received'> Attented</td>:  <td className='n-received'> Not Attented</td> } 
             </tr>
             <tr className='contant'>
                 <td className='data-name'>Have we contacted you ? </td>
                 <td className='coma'>:</td>
-                {personInfo.call==="true" ? <td className='received'> Contacted</td>:  <td className='n-received'> Not Contacted</td> } 
+                {personInfo.call==="Yes" ? <td className='received'> Contacted</td>:  <td className='n-received'> Not Contacted</td> } 
             </tr>
         </table>
        
@@ -166,7 +179,7 @@ Swal.fire({
 
     // <div className='cardContainer'>
     //     <div className="circle-1"></div>
-    // <div className="circle-2"></div>
+    // <div className="circle-2"></div>'
     // <div ref={tiltRef} className="card">
     //     <img src="https://novastela.com/wp-content/uploads/2021/05/steve-and-denesh.png" className="user" alt=""/>
     //     <h1>{personInfo.name}</h1>

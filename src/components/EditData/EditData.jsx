@@ -35,14 +35,46 @@ function EditData() {
   const [call,setCall]=useState(personInfo.call)
   const [subject,setSubject]=useState(personInfo.subject)
   const [id,setId]=useState(personInfo.id)
+  const [gid,setGid]=useState(personInfo.gid)
   console.log("inf",personInfo);
-  
+
+
+
 
  
   const handleSub=(e)=>{
+    console.log("aaaaaaaaaaaaaagid");
+    fetch('https://sheetdb.io/api/v1/m97aq338b4f11/id/'+gid, {
+    method: 'PATCH',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        data: {
+         
+          'Name': name,
+          'Fname': father,
+          "Rnumber" : regi,
+          "Address":address,
+          "birth":birth,
+          "Phone":phone,
+          "Wnumber":whats,
+          "Year":year,
+          "Book":book,
+          "Certificate":certi,
+          "Exam":exam,
+          "Contact":call,
+          "Subject":subject
+        }
+    })
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
     
     e.preventDefault()
     firebase.firestore().collection("members").doc(personInfo.id).set({
+      gid:gid,
       name:name,
       fname:father,
       rnumber:regi,
@@ -130,29 +162,29 @@ function EditData() {
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Text book</label>
                     <select defaultValue={book} required onChange={(e) => setBook(e.target.value)} class="form-select" id="inputGroupSelect02">
-                      <option value={false} >Not received</option>
-                      <option value={true}>Received</option>
+                      <option value={"Not received"} >Not received</option>
+                      <option value={"Received"}>Received</option>
                     </select>
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Certificate</label>
                     <select defaultValue={certi} onChange={(e) => setCerti(e.target.value)} class="form-select" id="inputGroupSelect02">
-                      <option value={false} >Not received</option>
-                      <option value={true} >Received</option>
+                      <option value={"Not received"} >Not received</option>
+                      <option value={"Received"} >Received</option>
                     </select>
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Exam</label>
                     <select defaultValue={exam} required onChange={(e) => setExam(e.target.value)} class="form-select" id="inputGroupSelect02">
-                      <option value={false} >Not Attented</option>
-                      <option value={true}>Attented</option>
+                      <option value={"Not Attented"} >Not Attented</option>
+                      <option value={"Attented"}>Attented</option>
                     </select>
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Have we contacted you ?</label>
                     <select defaultValue={call} required onChange={(e) => setCall(e.target.value)} class="form-select" id="inputGroupSelect02">
-                      <option value={false} >No</option>
-                      <option value={true}>Yes</option>
+                      <option value={"No"} >No</option>
+                      <option value={"Yes"}>Yes</option>
                     </select>
                   </div>
                   <div className='form-group '>

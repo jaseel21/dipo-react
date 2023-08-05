@@ -7,6 +7,8 @@ import Swal from "sweetalert2"
 import Footer from '../Footer/Footer'
 function AddData() {
   const navigate = useNavigate()
+
+  const [id,setId]=useState("")
   const [name, setName] = useState("")
   const [father, setFather] = useState("")
   const [regi, setRegi] = useState("")
@@ -15,35 +17,50 @@ function AddData() {
   const [phone, setPhone] = useState("")
   const [whats, setWhats] = useState("")
   const [year, setYear] = useState("2018")
-  const [book, setBook] = useState("false")
-  const [certi, setCerti] = useState("false")
-  const [exam, setExam] = useState("false")
-  const [call, setCall] = useState("false")
+  const [book, setBook] = useState("Not received")
+  const [certi, setCerti] = useState("Not received")
+  const [exam, setExam] = useState("Not received")
+  const [call, setCall] = useState("No")
   const [subject, setSubject] = useState("arabic")
+
+  
 
   
 
   const handleSub = (e) => {
 
-    const formEle = document.querySelector("form");
-    const formDatab = new FormData(formEle);
-    fetch(
-      "https://script.google.com/macros/s/AKfycbyXtdDB1_TsVK2SM0GnhGgVWFpBE8vV0FGvNzMZdXo7hIoS1_Uuy4f7zB5LngQgiXku/exec",
-      {
-        method: "POST",
-        body: formDatab
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
+    fetch('https://sheetdb.io/api/v1/m97aq338b4f11', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        data: [
+            {
+                'id': id,
+                'Name': name,
+                'Fname': father,
+                "Rnumber" : regi,
+                "Address":address,
+                "birth":birth,
+                "Phone":phone,
+                "Wnumber":whats,
+                "Year":year,
+                "Book":book,
+                "Certificate":certi,
+                "Exam":exam,
+                "Contact":call,
+                "Subject":subject
+            }
+        ]
+    })
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
     e.preventDefault()
     firebase.firestore().collection("members").add({
+      gid :id,
       name: name.toLowerCase(),
       fname: father,
       rnumber: regi,
@@ -62,10 +79,10 @@ function AddData() {
       setFather("")      
       setAddress("")
       setBirth("")
-      setBook("false")
-      setCall("false")
-      setCerti("false")
-      setExam("false")
+      setBook("Not received")
+      setCall("No")
+      setCerti("Not received")
+      setExam("Not received")
       setPhone("")
       setRegi("")
       setSubject("arabic")
@@ -77,6 +94,7 @@ Swal.fire({
   icon: 'success',
   text: 'Successfully Submitted',
   showConfirmButton: false,
+  
   timer: 1500
 })
       navigate("/form")
@@ -234,13 +252,13 @@ Swal.fire({
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Year</label>
                     <select name='Year' required onChange={(e) => setYear(e.target.value)} class="form-select" id="inputGroupSelect02">
-                      <option value={2019} >2018 </option>
-                      <option value={2021} >2019 </option>
-                      <option value={2023} >2020 </option>
-                      <option value={2023} >2021 </option>
-                      <option value={2023} >2022 </option>
+                      <option value={2018} >2018 </option>
+                      <option value={2029} >2019 </option>
+                      <option value={2020} >2020 </option>
+                      <option value={2021} >2021 </option>
+                      <option value={2022} >2022 </option>
                       <option value={2023} >2023 </option>
-                      <option value={2023} >2024 </option>
+                      <option value={2024} >2024 </option>
 
 
                     </select>
@@ -253,7 +271,7 @@ Swal.fire({
                     </select>
                   </div>
 
-                 <div className="form-group"><button  class="submitBtn" type="submit" >Submit</button> </div>
+                 <div className="form-group"><button onClick={()=>{setId(Date())}} class="submitBtn" type="submit" >Submit</button> </div>
                     
                   
                 </div>

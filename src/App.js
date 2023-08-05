@@ -41,7 +41,7 @@ function App() {
   });
   return (
     <div>
-      <AnimCursor/>
+      {/* <AnimCursor/> */}
 
       <Member>
         <PersonInfo>
@@ -51,7 +51,7 @@ function App() {
         <NavBar/>
           <Routes>
             
-          <Route path="/*" element={<Home />} />
+          <Route path="/" element={<Home />} />
             <Route path="/form" Component={user ? Form : login}></Route>
 
             <Route path="/list" Component={ListPage}></Route>

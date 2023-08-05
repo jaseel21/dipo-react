@@ -7,13 +7,13 @@ import "firebase/auth"
 
  
 const firebaseConfig = {
-    apiKey: "AIzaSyCmix59K3TdcpxfcXs-NjtqmaJYOUnvit0",
-    authDomain: "fire-de064.firebaseapp.com",
-    projectId: "fire-de064",
-    storageBucket: "fire-de064.appspot.com",
-    messagingSenderId: "1041886803367",
-    appId: "1:1041886803367:web:8dfa27aafb7f69f9cf3282",
-    measurementId: "G-XXSW9X4L88"
+  apiKey: "AIzaSyB6eE8oExLtwrLGRM9-BnWxDmZu_NUQfC8",
+  authDomain: "adsadiploma-bbce3.firebaseapp.com",
+  projectId: "adsadiploma-bbce3",
+  storageBucket: "adsadiploma-bbce3.appspot.com",
+  messagingSenderId: "276609032020",
+  appId: "1:276609032020:web:e530ffa0324fbef674b2c1",
+  measurementId: "G-X601XRCQ1N"
   };
   
 

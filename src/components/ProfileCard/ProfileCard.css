@@ -151,7 +151,7 @@ table{
 @media (max-width: 780px){
     .circle-1{
         top:10%;
-        left: 50%;
+        left: 29%;
     }
     .circle-2{
         top: 60%;
@@ -172,12 +172,12 @@ table{
     color: green;
     font-weight: 3rem;
     width: auto;
-    background:rgba(255, 255, 255, 0.616);
+    
    
 }
 .n-received{
    
-    color: rgb(255, 0, 0);
+    color: red;
     font-weight: 3rem;
     width: auto;   
 }
