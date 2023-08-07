@@ -107,7 +107,7 @@ function NavBar() {
           <ul className="links">
             <li>
               <label htmlFor="">01</label>
-              <a onClick={()=>{navigate("/home")}}>// home</a>
+              <a onClick={()=>{navigate("/")}}>// home</a>
             </li>
             <li>
               <label htmlFor="">02</label>

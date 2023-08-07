@@ -83,7 +83,7 @@ const SearchBar = () => {
                             <span className="sub-span-a">{result.subject}</span>
                           ) : (
                             <span className="sub-span-u">{result.subject}</span>
-                          )}{" "}
+                          )}{" - "}{result.year}
                         </li>
                       ))}
                     </ul>
