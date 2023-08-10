@@ -99,7 +99,7 @@ function NavBar() {
       <header>
         <div className="navbar">
           <div className="logo">
-            <a onClick={()=>{navigate("/home")}}>
+            <a onClick={()=>{navigate("/")}}>
               Diploma<span id="dot"><b>.</b></span>
               <span id="unscoire">_</span>
             </a>
@@ -146,7 +146,7 @@ function NavBar() {
         </div>
         <div className="dropdown_menu">
           <li>
-            <a onClick={()=>{navigate("/home");toggleMenu();}}>// home</a>
+            <a onClick={()=>{navigate("/");toggleMenu();}}>// home</a>
           </li>
           <li>
             <a onClick={()=>{navigate("/about");toggleMenu();}}>// about</a>
