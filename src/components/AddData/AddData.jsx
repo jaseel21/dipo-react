@@ -19,7 +19,7 @@ function AddData() {
   const [year, setYear] = useState("2018")
   const [book, setBook] = useState("Not received")
   const [certi, setCerti] = useState("Not received")
-  const [exam, setExam] = useState("Not received")
+  const [exam, setExam] = useState("Not attented")
   const [call, setCall] = useState("No")
   const [subject, setSubject] = useState("arabic")
 
@@ -79,15 +79,15 @@ function AddData() {
       setFather("")      
       setAddress("")
       setBirth("")
-      setBook("Not received")
-      setCall("No")
-      setCerti("Not received")
-      setExam("Not received")
+      // setBook("Not received")
+      // setCall("No")
+      // setCerti("Not received")
+      // setExam("Not attented")
       setPhone("")
       setRegi("")
-      setSubject("arabic")
+      // setSubject("arabic")
       setWhats("")
-      setYear("2018")
+      // setYear("2018")
 
 Swal.fire({
   position: 'center',
@@ -199,7 +199,7 @@ Swal.fire({
                   </div>
                   <div className='form-group '>
                     <label for="formGroupExampleInput">Register number</label>
-                    <input value={regi} name='RegisterNumber' onChange={(e) => setRegi(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
+                    <input required value={regi} name='RegisterNumber' onChange={(e) => setRegi(e.target.value)} type="text" class="form-control" id="formGroupExampleInput" />
                   </div>
                   <div className='form-group '>
                     <label for="exampleFormControlTextarea1">Address</label>
@@ -223,37 +223,37 @@ Swal.fire({
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Text book</label>
-                    <select name='TextBook' onChange={(e) => setBook(e.target.value)} class="form-select" id="inputGroupSelect02">
+                    <select name='TextBook' defaultValue={book} onChange={(e) => setBook(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value={"Not received"}>Not received</option>
                       <option value={"Received"}>Received</option>
                     </select>
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Certificate</label>
-                    <select name='Certificate' onChange={(e) => setCerti(e.target.value)} class="form-select" id="inputGroupSelect02">
+                    <select name='Certificate' defaultValue={certi} onChange={(e) => setCerti(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value={"Not received"} >Not received</option>
                       <option value={"Received"} >Received</option>
                     </select>
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Exam</label>
-                    <select name='Exam' required onChange={(e) => setExam(e.target.value)} class="form-select" id="inputGroupSelect02">
+                    <select name='Exam' defaultValue={exam} required onChange={(e) => setExam(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value={"Not Attented"} >Not Attented</option>
                       <option value={"Attented"}>Attented</option>
                     </select>
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Have we contacted you ?</label>
-                    <select name='Contacted' required onChange={(e) => setCall(e.target.value)} class="form-select" id="inputGroupSelect02">
+                    <select name='Contacted' defaultValue={call} required onChange={(e) => setCall(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value={"No"} >No</option>
                       <option value={"Yes"}>Yes</option>
                     </select>
                   </div>
                   <div className='form-group '>
                     <label for="inputGroupSelect02">Year</label>
-                    <select name='Year' required onChange={(e) => setYear(e.target.value)} class="form-select" id="inputGroupSelect02">
+                    <select name='Year' defaultValue={year} required onChange={(e) => setYear(e.target.value)} class="form-select" id="inputGroupSelect02">
                       <option value={2018} >2018 </option>
-                      <option value={2029} >2019 </option>
+                      <option value={2019} >2019 </option>
                       <option value={2020} >2020 </option>
                       <option value={2021} >2021 </option>
                       <option value={2022} >2022 </option>

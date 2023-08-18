@@ -97,7 +97,7 @@ Swal.fire({
 <div className="circle-2"></div>
 <div ref={tiltRef} className="card">
     <img src="https://novastela.com/wp-content/uploads/2021/05/steve-and-denesh.png" className="user" alt=""/>
-    <h1>{personInfo.name}</h1>
+    <h1>{personInfo.name.toUpperCase()}</h1>
     <span className="text1">S/o {personInfo.fname}</span>
     <div className="line"></div>
     <div className="text2">
